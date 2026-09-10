@@ -25,7 +25,7 @@
     <div class="muted">نسجل معلوماتك الأساسية مرة واحدة، ويستخدم التطبيق إعداداته الداخلية للحساب تلقائيًا.</div>
     <div class="card tint" style="margin-top:15px">
       <div class="grid">
-        <div class="field" style="grid-column:1/-1"><label>اسم المريض</label><input id="patientName" type="text" placeholder="مثال: أحمد"></div>
+        <div class="field" style="grid-column:1/-1"><label>اسم المريض</label><input id="patientName" type="text" placeholder="مثال: محمد"></div>
         <div class="field"><label>العمر</label><input id="age" type="number" min="18" placeholder="مثال 30"></div>
         <div class="field"><label>الجنس</label><select id="sex"><option value="">اختر</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
         <div class="field"><label>الوزن (كجم)</label><input id="weight" type="number" step="0.1" placeholder="مثال 70"></div>
@@ -45,7 +45,7 @@
 <div id="app" class="app">
   <header class="top">
     <div class="toprow">
-      <div class="brandrow"><div class="appicon">CD</div><div><h1>CarbDose <span style="font-size:15px;font-weight:800;opacity:.9">• كارب دوز</span></h1><p id="welcomePatient">مرحباً بك</p></div></div>
+      <div class="brandrow"><div class="appicon">CD</div><div><h1>CarbDose <span class="brandArabic">كارب دوز</span></h1><div id="welcomeName" class="welcomeName">مرحبًا بك</div></div></div>
       <button class="installTop" onclick="installApp()">＋ تثبيت</button>
     </div>
     <div class="stats">
@@ -107,7 +107,7 @@
 
     <section id="foods" class="pane hidden">
       <div class="card">
-        <div class="head"><div><div class="title">🥗 مكتبة الأصناف</div><div class="muted">كميات واضحة تشمل الخضار، الفواكه، النشويات، اللحوم، الأجبان، الدهون، الصوصات والمزيد.</div></div></div>
+        <div class="head"><div><div class="title">🥗 مكتبة الأصناف</div><div class="muted">كميات واضحة تشمل الأصناف الأساسية وبراندات السعودية والسوق المحلي. ابحث باسم الشركة أو المنتج.</div></div></div>
         <input class="search" id="foodSearch" placeholder="ابحث عن صنف..." oninput="renderFoods()">
         <div id="foodChips" class="chips"></div>
         <div id="foodList" class="list" style="margin-top:10px"></div>
@@ -132,7 +132,7 @@
       <div class="card tint">
         <div class="title">⚙️ تعديل البيانات</div><div class="divider"></div>
         <div class="grid">
-          <div class="field" style="grid-column:1/-1"><label>اسم المريض</label><input id="sPatientName" type="text"></div>
+          <div class="field" style="grid-column:1/-1"><label>اسم المريض</label><input id="sName" type="text"></div>
           <div class="field"><label>العمر</label><input id="sAge" type="number"></div><div class="field"><label>الجنس</label><select id="sSex"><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
           <div class="field"><label>الوزن</label><input id="sWeight" type="number" step="0.1"></div><div class="field"><label>الطول</label><input id="sHeight" type="number"></div>
           <div class="field"><label>HbA1c</label><input id="sA1c" type="number" step="0.1"></div><div class="field"><label>تاريخ HbA1c</label><input id="sA1cDate" type="date"></div>
@@ -186,29 +186,80 @@ const FOOD_DB={
 {name:'زيت زيتون',portion:'1 ملعقة طعام',carb:0,highFat:true},{name:'زيت نباتي',portion:'1 ملعقة طعام',carb:0,highFat:true},{name:'زبدة',portion:'1 ملعقة شاي',carb:0,highFat:true},{name:'سمن',portion:'1 ملعقة شاي',carb:0,highFat:true},{name:'أفوكادو',portion:'¼ حبة متوسطة',carb:4,highFat:true},{name:'زيتون',portion:'10 حبات صغيرة',carb:2,highFat:true},{name:'لوز',portion:'10 حبات',carb:3,highFat:true},{name:'فستق',portion:'15 حبة',carb:4,highFat:true},{name:'كاجو',portion:'10 حبات',carb:9,highFat:true},{name:'فول سوداني',portion:'ملعقتان طعام',carb:4,highFat:true},{name:'زبدة فول سوداني',portion:'ملعقة طعام',carb:4,highFat:true},{name:'طحينة',portion:'ملعقة طعام',carb:3,highFat:true}],
 'صوصات وإضافات':[
 {name:'كاتشب',portion:'1 ملعقة طعام',carb:4},{name:'مايونيز',portion:'1 ملعقة طعام',carb:1,highFat:true},{name:'صوص باربكيو',portion:'1 ملعقة طعام',carb:7},{name:'رانش',portion:'1 ملعقة طعام',carb:2,highFat:true},{name:'ثاوزند آيلاند',portion:'1 ملعقة طعام',carb:3,highFat:true},{name:'صوص ثوم/ثومية',portion:'1 ملعقة طعام',carb:2,highFat:true},{name:'خردل',portion:'1 ملعقة طعام',carb:1},{name:'صوص حار',portion:'1 ملعقة طعام',carb:1},{name:'صوص جبن',portion:'2 ملعقة طعام',carb:5,highFat:true},{name:'دبس رمان',portion:'1 ملعقة طعام',carb:10},{name:'حمص/هُمّص كصوص',portion:'2 ملعقة طعام',carb:5,highFat:true}],
-'براندات السوق السعودي':[
-{name:'ليز كلاسيك',portion:'28 غ (حوالي 15 حبة)',carb:15,highFat:true,quality:'مرجع PepsiCo الرسمي - قد تختلف عبوة السوق المحلي'},
-{name:'ليز كلاسيك',portion:'56 غ',carb:30,highFat:true,quality:'محسوب من الحصة الرسمية 28 غ'},
-{name:'البطل شيبس',portion:'28 غ',carb:15,highFat:true,quality:'تقديري - يعتمد الملصق الغذائي للنكهة والحجم'},
-{name:'دانيت شوكولاتة',portion:'علبة 125 غ',carb:21.9,highFat:true,quality:'مرجع Danone - قد تختلف تركيبة السوق المحلي'},
-{name:'دانيت فانيلا',portion:'علبة 125 غ',carb:21.8,highFat:true,quality:'مرجع Danone - قد تختلف تركيبة السوق المحلي'},
-{name:'المراعي عصير تفاح',portion:'200 مل',carb:22,quality:'المراعي - قيمة رسمية محسوبة من 11 غ/100مل'},
-{name:'المراعي عصير تفاح',portion:'300 مل',carb:33,quality:'المراعي - قيمة رسمية محسوبة من 11 غ/100مل'},
-{name:'المراعي عصير مانجو',portion:'200 مل',carb:27,quality:'المراعي - قيمة رسمية'},
-{name:'المراعي حليب كامل الدسم',portion:'250 مل',carb:12,quality:'المراعي - قيمة رسمية'},
-{name:'المراعي لبن كامل الدسم',portion:'180 مل',carb:8.3,quality:'المراعي - قيمة رسمية'},
-{name:'نادك حليب كامل الدسم',portion:'200 مل',carb:9.4,quality:'نادك - محسوب من 4.7 غ/100مل'},
-{name:'نادك لبن كامل الدسم',portion:'200 مل',carb:9.4,quality:'نادك - محسوب من 4.7 غ/100مل'},
-{name:'نادك نكتار مانجو مع فواكه مشكلة',portion:'200 مل',carb:19.6,quality:'نادك - محسوب من 9.8 غ/100مل'},
-{name:'ندى عصير تفاح بدون سكر مضاف',portion:'200 مل',carb:26.4,quality:'ندى - قيمة رسمية'},
-{name:'ندى عصير مانجو وفواكه مشكلة',portion:'200 مل',carb:30.2,quality:'ندى - قيمة رسمية'},
-{name:'ندى كوكتيل استوائي',portion:'200 مل',carb:25,quality:'ندى - قيمة رسمية'},
-{name:'الصافي حليب كامل الدسم',portion:'200 مل',carb:9.2,quality:'مرجعي - تحقق من الملصق الحالي'},
-{name:'الصافي لبن',portion:'200 مل',carb:9.2,quality:'مرجعي - تحقق من الملصق الحالي'}
+'براندات السعودية والسوق المحلي':[
+{name:'ليز كلاسيك',brand:'Lay’s',portion:'28 غ',carb:15,highFat:true,quality:'مرجع PepsiCo الرسمي - طابق نكهة العبوة'},
+{name:'ليز كلاسيك',brand:'Lay’s',portion:'56 غ',carb:30,highFat:true,quality:'محسوب من الحصة الرسمية 28 غ'},
+{name:'البطل شيبس',brand:'البطل',portion:'28 غ',carb:15,highFat:true,quality:'تقديري - طابق ملصق النكهة والحجم'},
+{name:'تسالي شيبس',brand:'تسالي',portion:'28 غ',carb:15,highFat:true,quality:'تقديري - طابق ملصق النكهة والحجم'},
+{name:'دانيت شوكولاتة',brand:'Danette',portion:'علبة 125 غ',carb:21.9,highFat:true,quality:'مرجعي - قد تختلف تركيبة السوق المحلي'},
+{name:'دانيت فانيلا',brand:'Danette',portion:'علبة 125 غ',carb:21.8,highFat:true,quality:'مرجعي - قد تختلف تركيبة السوق المحلي'},
+{name:'عصير تفاح 100% بدون سكر مضاف',brand:'المراعي',portion:'200 مل',carb:22,quality:'المراعي رسمي - 11 غ/100مل'},
+{name:'عصير تفاح 100% بدون سكر مضاف',brand:'المراعي',portion:'300 مل',carb:33,quality:'المراعي رسمي - 11 غ/100مل'},
+{name:'عصير مانجو',brand:'المراعي',portion:'200 مل',carb:27,quality:'المراعي - طابق العبوة الحالية'},
+{name:'حليب كامل الدسم',brand:'المراعي',portion:'250 مل',carb:12,quality:'المراعي - طابق العبوة الحالية'},
+{name:'لبن كامل الدسم',brand:'المراعي',portion:'180 مل',carb:8.3,quality:'المراعي - طابق العبوة الحالية'},
+{name:'خبز توست لوزين',brand:'L’usine / المراعي',portion:'شريحتان',carb:30,quality:'تقديري حسب الحصص - طابق ملصق المنتج'},
+{name:'كرواسون لوزين',brand:'L’usine / المراعي',portion:'1 حبة',carb:30,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'حليب كامل الدسم',brand:'نادك',portion:'200 مل',carb:9.4,quality:'نادك رسمي - 4.7 غ/100مل'},
+{name:'حليب خالي الدسم',brand:'نادك',portion:'200 مل',carb:9.4,quality:'نادك رسمي - 4.7 غ/100مل'},
+{name:'لبن كامل الدسم',brand:'نادك',portion:'200 مل',carb:9.4,quality:'نادك رسمي - 4.7 غ/100مل'},
+{name:'لبن قليل الدسم',brand:'نادك',portion:'200 مل',carb:9.4,quality:'نادك رسمي - 4.7 غ/100مل'},
+{name:'شراب حليب فراولة عالي البروتين',brand:'نادك',portion:'350 مل',carb:32.6,quality:'نادك رسمي - 9.3 غ/100مل'},
+{name:'نكتار مانجو وفواكه مشكلة',brand:'نادك',portion:'200 مل',carb:19.6,quality:'نادك - 9.8 غ/100مل'},
+{name:'عصير تفاح بدون سكر مضاف',brand:'ندى',portion:'200 مل',carb:26.4,quality:'ندى - قيمة منتج مرجعية'},
+{name:'عصير مانجو وفواكه مشكلة',brand:'ندى',portion:'200 مل',carb:30.2,quality:'ندى - قيمة منتج مرجعية'},
+{name:'كوكتيل استوائي',brand:'ندى',portion:'200 مل',carb:25,quality:'ندى - قيمة منتج مرجعية'},
+{name:'حليب طازج كامل الدسم',brand:'ندى',portion:'200 مل',carb:10,quality:'تقديري - طابق ملصق العبوة'},
+{name:'لبن طازج',brand:'ندى',portion:'200 مل',carb:10,quality:'تقديري - طابق ملصق العبوة'},
+{name:'حليب كامل الدسم',brand:'الصافي دانون',portion:'200 مل',carb:9.2,quality:'مرجعي - تحقق من الملصق الحالي'},
+{name:'لبن',brand:'الصافي دانون',portion:'200 مل',carb:9.2,quality:'مرجعي - تحقق من الملصق الحالي'},
+{name:'زبادي طبيعي',brand:'الصافي دانون',portion:'علبة 170 غ',carb:12,quality:'تقديري - طابق ملصق العبوة'},
+{name:'حليب كامل الدسم',brand:'السعودية / SADAFCO',portion:'200 مل',carb:10,quality:'SADAFCO رسمي - 5 غ/100مل'},
+{name:'حليب قليل الدسم',brand:'السعودية / SADAFCO',portion:'200 مل',carb:10,quality:'SADAFCO رسمي - 5 غ/100مل'},
+{name:'حليب خالي اللاكتوز',brand:'السعودية / SADAFCO',portion:'200 مل',carb:10,quality:'SADAFCO رسمي - 5 غ/100مل'},
+{name:'حليب شوكولاتة',brand:'السعودية / SADAFCO',portion:'200 مل',carb:26,quality:'SADAFCO رسمي - 13 غ/100مل'},
+{name:'حليب دبل شوكولاتة',brand:'السعودية / SADAFCO',portion:'200 مل',carb:27,quality:'SADAFCO رسمي - 13.5 غ/100مل'},
+{name:'حليب فانيلا',brand:'السعودية / SADAFCO',portion:'200 مل',carb:19,quality:'SADAFCO رسمي - 9.5 غ/100مل'},
+{name:'حليب Cotton Candy',brand:'السعودية / SADAFCO',portion:'200 مل',carb:20,quality:'SADAFCO رسمي - 10 غ/100مل'},
+{name:'معجون طماطم',brand:'السعودية / SADAFCO',portion:'2 ملعقة طعام',carb:6,quality:'تقديري - طابق الملصق'},
+{name:'عصير تفاح',brand:'الربيع',portion:'200 مل',carb:24,quality:'تقديري - طابق ملصق العبوة'},
+{name:'عصير مانجو',brand:'الربيع',portion:'200 مل',carb:28,quality:'تقديري - طابق ملصق العبوة'},
+{name:'كوكتيل فواكه',brand:'الربيع',portion:'200 مل',carb:26,quality:'تقديري - طابق ملصق العبوة'},
+{name:'حليب طويل الأجل',brand:'الربيع',portion:'200 مل',carb:10,quality:'تقديري - طابق ملصق العبوة'},
+{name:'تونة خفيفة بالماء',brand:'قودي',portion:'½ علبة',carb:0,quality:'قودي - الكربوهيدرات شبه معدومة؛ طابق الملصق'},
+{name:'مايونيز',brand:'قودي',portion:'1 ملعقة طعام',carb:1,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'زبدة فول سوداني',brand:'قودي',portion:'1 ملعقة طعام',carb:4,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'مكرونة جافة',brand:'قودي',portion:'56 غ جاف',carb:42,quality:'تقديري - طابق ملصق نوع المكرونة'},
+{name:'ذرة حلوة معلبة',brand:'قودي',portion:'½ كوب',carb:15,quality:'تقديري - طابق الملصق'},
+{name:'فاصوليا حمراء معلبة',brand:'قودي',portion:'½ كوب',carb:20,quality:'تقديري - طابق الملصق'},
+{name:'حمص معلب',brand:'قودي',portion:'½ كوب',carb:20,quality:'تقديري - طابق الملصق'},
+{name:'ورق عنب محشي',brand:'قودي',portion:'5 حبات',carb:30,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'بسكويت شاي',brand:'ديمة',portion:'4 قطع',carb:20,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'معمول تمر',brand:'ديمة',portion:'2 حبة صغيرة',carb:30,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'ويفر',brand:'ديمة',portion:'1 عبوة صغيرة',carb:25,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'كيك مغلف',brand:'ديمة',portion:'1 حبة',carb:30,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'معمول تمر',brand:'حلواني إخوان',portion:'2 حبة صغيرة',carb:30,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'حلاوة طحينية',brand:'حلواني إخوان',portion:'30 غ',carb:15,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'طحينة',brand:'حلواني إخوان',portion:'1 ملعقة طعام',carb:3,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'مربى',brand:'حلواني إخوان',portion:'1 ملعقة طعام',carb:13,quality:'تقديري - طابق ملصق النكهة'},
+{name:'عجينة سمبوسة',brand:'سنبلة',portion:'2 شريحة',carb:15,quality:'تقديري - طابق ملصق المنتج'},
+{name:'عجينة بف باستري',brand:'سنبلة',portion:'30 غ',carb:15,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'ملوخية مجمدة',brand:'سنبلة',portion:'½ كوب مطبوخ',carb:5,quality:'تقديري حسب الحصة'},
+{name:'خضار مشكلة مجمدة',brand:'سنبلة',portion:'½ كوب مطبوخ',carb:10,quality:'تقديري - يختلف حسب الخليط'},
+{name:'مكرونة جافة',brand:'وفرة',portion:'56 غ جاف',carb:42,quality:'تقديري - طابق ملصق المنتج'},
+{name:'كورن فليكس',brand:'وفرة',portion:'30 غ',carb:24,quality:'تقديري - طابق ملصق المنتج'},
+{name:'زبدة فول سوداني',brand:'وفرة',portion:'1 ملعقة طعام',carb:4,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'زيت عافية',brand:'سافولا / عافية',portion:'1 ملعقة طعام',carb:0,highFat:true,quality:'زيت - 0 غ كربوهيدرات'},
+{name:'زيت العربي',brand:'سافولا / العربي',portion:'1 ملعقة طعام',carb:0,highFat:true,quality:'زيت - 0 غ كربوهيدرات'},
+{name:'سكر الأسرة',brand:'سافولا / الأسرة',portion:'1 ملعقة طعام ≈ 15 غ',carb:15,quality:'سكر - الكمية نفسها تقريبًا كربوهيدرات'},
+{name:'تمر سكري',brand:'بتيل / تمور سعودية',portion:'3 حبات متوسطة',carb:15,quality:'تقديري حسب الحجم والنوع'},
+{name:'خبز برجر',brand:'هرفي للمخبوزات',portion:'1 حبة كاملة',carb:30,quality:'تقديري حسب الحصص - طابق الملصق'},
+{name:'خبز توست',brand:'هرفي للمخبوزات',portion:'شريحتان',carb:30,quality:'تقديري حسب الحصص - طابق الملصق'},
+{name:'مشروب راني فواكه',brand:'Rani / السوق السعودي',portion:'240 مل',carb:30,quality:'تقديري - طابق الملصق'},
+{name:'باربيكان مشروب شعير',brand:'Barbican / السوق السعودي',portion:'250 مل',carb:30,quality:'تقديري - طابق النكهة والملصق'}
 ],
 'حلويات وسناك':[
-{name:'دونات',portion:'1 حبة متوسطة',carb:30,highFat:true},{name:'كرواسون سادة',portion:'1 حبة',carb:30,highFat:true},{name:'مافن',portion:'1 حبة',carb:45,highFat:true},{name:'كوكي',portion:'1 حبة متوسطة',carb:30,highFat:true},{name:'كنافة',portion:'قطعة متوسطة',carb:45,highFat:true},{name:'لقيمات',portion:'5 حبات',carb:30,highFat:true},{name:'شوكولاتة',portion:'قطعة 30 غ',carb:15,highFat:true},{name:'آيس كريم',portion:'½ كوب',carb:15,highFat:true},{name:'شيبس',portion:'كيس صغير 25–30 غ',carb:15,highFat:true}],
-
+{name:'دونات',portion:'1 حبة متوسطة',carb:30,highFat:true},{name:'كرواسون سادة',portion:'1 حبة',carb:30,highFat:true},{name:'مافن',portion:'1 حبة',carb:45,highFat:true},{name:'كوكي',portion:'1 حبة متوسطة',carb:30,highFat:true},{name:'كنافة',portion:'قطعة متوسطة',carb:45,highFat:true},{name:'لقيمات',portion:'5 حبات',carb:30,highFat:true},{name:'شوكولاتة',portion:'قطعة 30 غ',carb:15,highFat:true},{name:'آيس كريم',portion:'½ كوب',carb:15,highFat:true},{name:'شيبس',portion:'كيس صغير 25–30 غ',carb:15,highFat:true}]
 };
 
 const RESTAURANTS=[
@@ -251,8 +302,8 @@ let meal=[];let mealType='';let foodCat=Object.keys(FOOD_DB)[0];let restType='ا
 
 function init(){if(!profile)document.getElementById('onboard').classList.remove('hidden');hydrate();renderFoodChips();renderFoods();renderRestChips();renderRestaurants();renderMeal();renderHistory();updateDashboard();setPreview(previewMode,document.querySelector(`#previewBtns button[data-v="${previewMode}"]`));if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});}
 function saveProfile(){profile={name:(patientName.value||'').trim(),age:+age.value,sex:sex.value,weight:+weight.value,height:+height.value,a1c:+a1c.value||null,a1cDate:a1cDate.value,basal:+basal.value||null,basalTime:basalTime.value,activity:+activity.value};if(!profile.name||!profile.age||!profile.sex||!profile.weight||!profile.height||!profile.activity){alert('أكمل الاسم والعمر والجنس والوزن والطول والنشاط.');return}localStorage.setItem('cd_profile_v3',JSON.stringify(profile));document.getElementById('onboard').classList.add('hidden');hydrate();updateDashboard();}
-function hydrate(){if(!profile)return;const map={sPatientName:profile.name||'',sAge:profile.age,sSex:profile.sex,sWeight:profile.weight,sHeight:profile.height,sA1c:profile.a1c||'',sA1cDate:profile.a1cDate||'',sBasal:profile.basal||'',sBasalTime:profile.basalTime||'',sActivity:String(profile.activity)};Object.entries(map).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v});const w=document.getElementById('welcomePatient');if(w)w.textContent=profile.name?'مرحباً، '+profile.name:'مرحباً بك';renderProfile();}
-function saveSettings(){profile.name=(sPatientName.value||'').trim()||profile.name||'';profile.age=+sAge.value;profile.sex=sSex.value;profile.weight=+sWeight.value;profile.height=+sHeight.value;profile.a1c=+sA1c.value||null;profile.a1cDate=sA1cDate.value;profile.basal=+sBasal.value||null;profile.basalTime=sBasalTime.value;profile.activity=+sActivity.value;localStorage.setItem('cd_profile_v3',JSON.stringify(profile));hydrate();updateDashboard();alert('تم حفظ البيانات');}
+function hydrate(){if(!profile)return;const map={sName:profile.name||'',sAge:profile.age,sSex:profile.sex,sWeight:profile.weight,sHeight:profile.height,sA1c:profile.a1c||'',sA1cDate:profile.a1cDate||'',sBasal:profile.basal||'',sBasalTime:profile.basalTime||'',sActivity:String(profile.activity)};Object.entries(map).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v});const wn=document.getElementById('welcomeName');if(wn)wn.textContent=profile.name?'مرحبًا، '+profile.name:'مرحبًا بك';renderProfile();}
+function saveSettings(){profile.name=(sName.value||'').trim();profile.age=+sAge.value;profile.sex=sSex.value;profile.weight=+sWeight.value;profile.height=+sHeight.value;profile.a1c=+sA1c.value||null;profile.a1cDate=sA1cDate.value;profile.basal=+sBasal.value||null;profile.basalTime=sBasalTime.value;profile.activity=+sActivity.value;localStorage.setItem('cd_profile_v3',JSON.stringify(profile));hydrate();updateDashboard();alert('تم حفظ البيانات');}
 function mifflinCalories(){if(!profile)return null;const bmr=10*profile.weight+6.25*profile.height-5*profile.age+(profile.sex==='male'?5:-161);return Math.round(bmr*profile.activity);}
 function carbShare(){if(!profile||!profile.a1c)return .525; if(profile.a1c<=7) return .55; if(profile.a1c<=8.5) return .525; return .50;}
 function dailyCarbs(){const kcal=mifflinCalories();return kcal?Math.round((kcal*carbShare())/4):null;}
@@ -265,7 +316,7 @@ function activityLabel(v){return v==1.2?'قليل جدًا':v==1.375?'خفيف':
 function setMealType(t,btn){mealType=t;document.querySelectorAll('#mealTypeButtons button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');mealTypeBadge.textContent=MEAL_LABELS[t];generateSmartMeal(false);}
 function showTab(id,btn){document.querySelectorAll('.pane').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='history')renderHistory();if(id==='profile')renderProfile();}
 function renderFoodChips(){foodChips.innerHTML=Object.keys(FOOD_DB).map(c=>`<button class="chip ${c===foodCat?'active':''}" onclick="foodCat='${c}';renderFoodChips();renderFoods()">${c}</button>`).join('');}
-function renderFoods(){const q=(foodSearch.value||'').toLowerCase();const arr=FOOD_DB[foodCat].map((x,i)=>({...x,i})).filter(x=>!q||x.name.toLowerCase().includes(q)||x.portion.toLowerCase().includes(q));foodList.innerHTML=arr.length?arr.map(x=>`<div class="food"><div><h4>${x.name}</h4><small>${x.portion} • ${x.carb} غ كربوهيدرات${x.highFat?' • دهون أعلى':''}${x.note?' • '+x.note:''}</small></div><div class="rightActions"><span class="badge ${x.highFat?'orange':'green'}">${x.carb} غ</span><button class="plus" onclick="addFood('${foodCat}',${x.i})">＋</button></div></div>`).join(''):'<div class="empty">لا توجد نتائج.</div>';}
+function renderFoods(){const q=(foodSearch.value||'').toLowerCase();const arr=FOOD_DB[foodCat].map((x,i)=>({...x,i})).filter(x=>!q||x.name.toLowerCase().includes(q)||x.portion.toLowerCase().includes(q)||(x.brand||'').toLowerCase().includes(q)||(x.quality||'').toLowerCase().includes(q));foodList.innerHTML=arr.length?arr.map(x=>`<div class="food"><div><h4>${x.name}</h4><small>${x.brand?'<b>'+x.brand+'</b> • ':''}${x.portion} • ${x.carb} غ كربوهيدرات${x.highFat?' • دهون أعلى':''}${x.quality?'<br>'+x.quality:''}</small></div><div class="rightActions"><span class="badge ${x.highFat?'orange':'green'}">${x.carb} غ</span><button class="plus" onclick="addFood('${foodCat}',${x.i})">＋</button></div></div>`).join(''):'<div class="empty">لا توجد نتائج.</div>'; }
 function addFood(cat,i){const x=FOOD_DB[cat][i];addMeal({...x,source:'food'});}
 function addMeal(x){const e=meal.find(m=>m.name===x.name&&m.carb===x.carb);if(e)e.qty++;else meal.push({...x,qty:1});renderMeal();calculate();}
 function renderMeal(){if(!meal.length)mealList.innerHTML='<div class="empty">لم تضف أي صنف بعد.</div>';else mealList.innerHTML=meal.map((x,i)=>`<div class="mealitem"><div><b>${x.name}</b><div class="muted">${x.portion||''} • ${x.carb*x.qty} غ${x.highFat?' • دهون أعلى':''}</div></div><div class="qty"><button onclick="qty(${i},-1)">−</button><b>${x.qty}</b><button onclick="qty(${i},1)">＋</button></div></div>`).join('');const c=meal.reduce((s,x)=>s+x.carb*x.qty,0);mealCarbBadge.textContent=c+' غ';mealProgress.style.width=Math.min(100,c/120*100)+'%';updateDashboard();}
