@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0f766e" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="CarbDose" />
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="icon.svg" />
+<title>CarbDose</title>
+<style>
+:root{--bg:#f4f8f8;--card:#fff;--text:#142230;--muted:#6b7788;--brand:#0f766e;--brand2:#14b8a6;--accent:#22c55e;--soft:#ecfdf5;--line:#e5ecef;--danger:#b42318;--dangerbg:#fff1f0;--warn:#9a3412;--warnbg:#fff7ed;--info:#1d4ed8;--infobg:#eff6ff;--shadow:0 14px 34px rgba(20,34,48,.08);--r:22px}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#edf9f6 0,#f5f8fb 42%,#f8fafc 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.app{width:min(100%,660px);margin:0 auto;min-height:100vh;padding-bottom:104px;transition:max-width .25s ease}.app.preview-phone{max-width:390px}.app.preview-tablet{max-width:820px}.app.preview-desktop{max-width:1180px}.top{background:linear-gradient(135deg,#0f766e 0%,#12a594 52%,#22c55e 120%);color:#fff;padding:20px 18px 18px;border-radius:0 0 30px 30px;box-shadow:var(--shadow);position:sticky;top:0;z-index:15}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.brandrow{display:flex;align-items:center;gap:12px}.appicon{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);display:grid;place-items:center;font-weight:900;font-size:18px;backdrop-filter:blur(8px)}.top h1{margin:0;font-size:27px}.brandArabic{font-size:15px;font-weight:800;opacity:.92;margin-right:7px}.welcomeName{margin-top:4px;font-size:13px;color:rgba(255,255,255,.92);font-weight:700}.top p{margin:4px 0 0;font-size:13px;color:rgba(255,255,255,.88)}.installTop{border:0;background:rgba(255,255,255,.16);color:#fff;border-radius:14px;padding:9px 11px;font-size:12px;font-weight:800}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.stat{padding:11px;border-radius:16px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18)}.stat small{display:block;font-size:11px;opacity:.84}.stat b{display:block;font-size:18px;margin-top:4px}.content{padding:15px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:13px;box-shadow:0 8px 22px rgba(16,24,40,.045)}.card.tint{background:linear-gradient(180deg,#fff,#fbfffd)}.card.daily{background:linear-gradient(135deg,#0f766e,#159b86);color:#fff;border:none}.card.daily .muted{color:rgba(255,255,255,.82)}.head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}.title{font-size:18px;font-weight:900}.muted{font-size:13px;color:var(--muted);line-height:1.55}.badge{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:800;background:#f8fafc;border:1px solid var(--line);color:#475467}.badge.green{background:#ecfdf5;border-color:#b7ebd3;color:#065f46}.badge.blue{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}.badge.orange{background:#fff7ed;border-color:#fed7aa;color:#9a3412}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:11px}.field label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px 12px;outline:none}.field input:focus,.field select:focus{border-color:#8bd7cd;box-shadow:0 0 0 4px rgba(20,184,166,.1)}.btn{border:0;border-radius:15px;padding:12px 14px;font-weight:850}.btn.primary{background:linear-gradient(135deg,#0f766e,#16a34a);color:#fff}.btn.soft{background:#ecfdf5;color:#07665d}.btn.ghost{background:#f8fafc;border:1px solid var(--line);color:#475467}.full{width:100%}.mealtypes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mealtypes button{border:1px solid var(--line);background:#fff;border-radius:15px;padding:11px 4px;font-size:12px;font-weight:800;color:#475467}.mealtypes button.active{background:#ecfdf5;border-color:#86efac;color:#065f46}.dailygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.dkpi{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.16);padding:11px;border-radius:16px}.dkpi small{display:block;opacity:.82;font-size:11px}.dkpi b{display:block;margin-top:4px;font-size:18px}.progress{height:9px;border-radius:999px;background:#e9eef2;overflow:hidden}.progress>div{height:100%;background:linear-gradient(90deg,#0f766e,#22c55e);border-radius:999px}.list{display:grid;gap:9px}.food{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:17px;background:#fff}.food h4{margin:0;font-size:14px}.food small{display:block;margin-top:4px;color:var(--muted);line-height:1.45}.rightActions{display:flex;align-items:center;gap:7px;flex-shrink:0}.plus{width:36px;height:36px;border:0;border-radius:12px;background:#ecfdf5;color:#0f766e;font-size:20px;font-weight:900}.chips{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.chip{border:1px solid var(--line);background:#fff;color:#475467;border-radius:999px;padding:9px 11px;white-space:nowrap;font-size:12px;font-weight:800}.chip.active{background:#0f766e;color:#fff;border-color:#0f766e}.search{width:100%;border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:10px}.mealitem{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px dashed #d8e3e8;background:#fcfefe;border-radius:17px;padding:11px}.qty{display:flex;gap:7px;align-items:center}.qty button{width:30px;height:30px;border:1px solid var(--line);background:#fff;border-radius:10px;font-size:18px}.result{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{padding:13px;border-radius:17px;background:#f8fafc;border:1px solid #edf1f4}.metric span{font-size:12px;color:var(--muted)}.metric b{display:block;font-size:23px;margin-top:5px}.metric.total{background:#ecfdf5;border-color:#b7ebd3}.metric.total b{color:#067067;font-size:29px}.notice{padding:13px;border-radius:16px;margin-top:10px;line-height:1.65;font-size:13px}.notice.safe{background:#ecfdf5;border:1px solid #b7ebd3;color:#065f46}.notice.warn{background:var(--warnbg);border:1px solid #fed7aa;color:var(--warn)}.notice.danger{background:var(--dangerbg);border:1px solid #fecdca;color:var(--danger)}.notice.info{background:var(--infobg);border:1px solid #bfdbfe;color:var(--info)}.actions{display:flex;gap:8px;margin-top:10px}.actions .btn{flex:1}.bottom{position:fixed;left:0;right:0;bottom:0;z-index:40;background:linear-gradient(180deg,transparent,rgba(244,248,248,.96) 25%);padding:10px}.bottomInner{width:min(100%,660px);margin:auto;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:21px;display:grid;grid-template-columns:repeat(5,1fr);padding:7px;box-shadow:0 10px 28px rgba(15,23,42,.10)}.nav{border:0;background:none;border-radius:13px;padding:7px 3px;color:#7b8796;font-size:10px;font-weight:800}.nav svg{width:20px;height:20px;display:block;margin:0 auto 3px}.nav.active{background:#ecfdf5;color:#087268}.restaurant{border:1px solid var(--line);border-radius:19px;padding:13px;margin-bottom:10px;background:#fff}.resthead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.restname{display:flex;align-items:center;gap:10px}.restlogo{width:42px;height:42px;border-radius:13px;background:#f8fafc;border:1px solid var(--line);object-fit:contain;padding:4px}.restinitial{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#ecfdf5,#eff6ff);display:grid;place-items:center;font-weight:900;color:#0f766e;border:1px solid var(--line)}.restmeal{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid #f0f3f5}.restmeal:first-of-type{border-top:0}.restmeal h4{margin:0;font-size:14px}.source{font-size:10px;padding:4px 7px;border-radius:999px;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}.source.est{background:#fff7ed;color:#9a3412;border-color:#fed7aa}.customBtn{border:0;background:#ecfdf5;color:#0f766e;border-radius:11px;padding:8px 9px;font-size:11px;font-weight:850}.smart{background:linear-gradient(180deg,#fff8ee,#fff);border-color:#fed7aa}.smartbox{padding:12px;border:1px dashed #fdba74;background:#fff;border-radius:16px}.smartrow{padding:7px 0;border-bottom:1px dashed #f1e3d2}.smartrow:last-child{border-bottom:0}.history{padding:12px 0;border-bottom:1px solid var(--line)}.history:last-child{border-bottom:0}.hrow{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.profileGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.pkpi{padding:12px;border:1px solid var(--line);border-radius:16px;background:#fff}.pkpi span{font-size:11px;color:var(--muted)}.pkpi b{display:block;margin-top:4px;font-size:16px}.previewBtns{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.previewBtns button{padding:10px 4px;border:1px solid var(--line);background:#fff;border-radius:13px;font-size:11px;font-weight:800}.previewBtns button.active{background:#ecfdf5;color:#065f46;border-color:#86efac}.modal{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:100;display:flex;align-items:flex-end;justify-content:center;padding:14px}.modalCard{width:min(100%,660px);max-height:82vh;overflow:auto;background:#fff;border-radius:25px;padding:17px;box-shadow:0 30px 70px rgba(15,23,42,.25)}.modrow{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.toggle{border:1px solid var(--line);border-radius:999px;padding:7px 10px;background:#fff;font-size:11px;font-weight:800}.toggle.on{background:#ecfdf5;color:#065f46;border-color:#86efac}.onboard{position:fixed;inset:0;z-index:120;background:linear-gradient(180deg,#edf9f6,#f8fafc);overflow:auto;padding:20px}.onboardInner{max-width:620px;margin:auto}.onboardLogo{width:68px;height:68px;border-radius:22px;background:linear-gradient(135deg,#0f766e,#22c55e);display:grid;place-items:center;color:#fff;font-size:24px;font-weight:900;box-shadow:var(--shadow)}.onboard h2{font-size:27px;margin:15px 0 6px}.footer{font-size:11px;color:#7c8795;text-align:center;line-height:1.65;padding:2px 10px 14px}.empty{padding:20px;text-align:center;color:var(--muted);font-size:13px}.divider{height:1px;background:var(--line);margin:12px 0}.miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.miniCard{padding:10px;border-radius:14px;background:#f8fafc;border:1px solid var(--line)}.miniCard small{color:var(--muted)}.miniCard b{display:block;margin-top:3px}.scrolltop{font-size:11px;color:var(--muted)}
+@media(max-width:480px){.mealtypes{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(3,1fr)}.stat b{font-size:15px}.dailygrid{grid-template-columns:repeat(3,1fr)}.dkpi b{font-size:16px}.grid{grid-template-columns:1fr 1fr}.result{grid-template-columns:1fr 1fr}.top h1{font-size:23px}.previewBtns{grid-template-columns:1fr 1fr}}
+
+.barcodeCard{background:linear-gradient(135deg,#effcf8,#fff);border-color:#b7ebd3}.barcodeActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.barcodeHero{display:flex;align-items:center;gap:12px}.barcodeIcon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:#0f766e;color:#fff;font-size:24px}.foodMode{margin:10px 0}.productImage{width:58px;height:58px;border-radius:14px;object-fit:contain;background:#f8fafc;border:1px solid var(--line);padding:3px}.userProduct{align-items:flex-start}.addedNote{display:inline-flex;margin-top:5px;padding:4px 7px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:10px;font-weight:800;border:1px solid #bfdbfe}.barcodeModal{position:fixed;inset:0;background:rgba(15,23,42,.64);z-index:130;display:flex;align-items:flex-end;justify-content:center;padding:12px}.barcodeModalCard{width:min(100%,660px);max-height:90vh;overflow:auto;background:#fff;border-radius:26px;padding:16px}.barcodeReader{min-height:260px;border:1px dashed #b8c5ce;border-radius:18px;overflow:hidden;background:#f8fafc}.scanResult{padding:12px;border:1px solid var(--line);border-radius:16px;background:#f8fafc;margin-top:10px}.scanProductHead{display:flex;gap:10px;align-items:center}.scanProductHead img{width:64px;height:64px;border-radius:15px;object-fit:contain;background:#fff;border:1px solid var(--line)}.manualBarcode{display:flex;gap:8px;margin-top:10px}.manualBarcode input{flex:1;border:1px solid var(--line);border-radius:14px;padding:12px;min-width:0}.scannerStatus{font-size:12px;color:var(--muted);line-height:1.6;margin-top:8px}.scannerStatus.ok{color:#067067}.scannerStatus.bad{color:var(--danger)}
+
+</style>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" defer></script>
+</head>
+<body>
+<div id="onboard" class="onboard hidden">
+  <div class="onboardInner">
+    <div class="onboardLogo">CD</div>
+    <h2>إعداد حسابك</h2>
+    <div class="muted">نسجل معلوماتك الأساسية مرة واحدة، ويستخدم التطبيق إعداداته الداخلية للحساب تلقائيًا.</div>
+    <div class="card tint" style="margin-top:15px">
+      <div class="grid">
+        <div class="field" style="grid-column:1/-1"><label>اسم المريض</label><input id="patientName" type="text" placeholder="مثال: محمد"></div>
+        <div class="field"><label>العمر</label><input id="age" type="number" min="18" placeholder="مثال 30"></div>
+        <div class="field"><label>الجنس</label><select id="sex"><option value="">اختر</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
+        <div class="field"><label>الوزن (كجم)</label><input id="weight" type="number" step="0.1" placeholder="مثال 70"></div>
+        <div class="field"><label>الطول (سم)</label><input id="height" type="number" placeholder="مثال 170"></div>
+        <div class="field"><label>آخر HbA1c %</label><input id="a1c" type="number" step="0.1" placeholder="مثال 7.2"></div>
+        <div class="field"><label>تاريخ HbA1c</label><input id="a1cDate" type="date"></div>
+        <div class="field"><label>جرعة الإنسولين طويل المفعول</label><input id="basal" type="number" step="0.5" placeholder="للسجل فقط"></div>
+        <div class="field"><label>وقت الطويل المفعول</label><input id="basalTime" type="time"></div>
+        <div class="field" style="grid-column:1/-1"><label>مستوى النشاط</label><select id="activity"><option value="">اختر</option><option value="1.2">قليل جدًا / أغلب اليوم جلوس</option><option value="1.375">خفيف</option><option value="1.55">متوسط</option><option value="1.725">مرتفع</option></select></div>
+      </div>
+      <div class="notice info">يُستخدم الجنس والنشاط فقط لرفع دقة تقدير الاحتياج اليومي. HbA1c يُحفظ للمتابعة ولا يغيّر السعرات تلقائيًا.</div>
+      <button class="btn primary full" onclick="saveProfile()">حفظ وبدء الاستخدام</button>
+    </div>
+  </div>
+</div>
+
+<div id="app" class="app">
+  <header class="top">
+    <div class="toprow">
+      <div class="brandrow"><div class="appicon">CD</div><div><h1>CarbDose <span class="brandArabic">كارب دوز</span></h1><div id="welcomeName" class="welcomeName">مرحبًا بك</div></div></div>
+      <button class="installTop" onclick="installApp()">＋ تثبيت</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><small>كربوهيدراتك اليومية</small><b id="topDaily">—</b></div>
+      <div class="stat"><small>المسجل اليوم</small><b id="topLogged">0 غ</b></div>
+      <div class="stat"><small>الوجبة الحالية</small><b id="topMeal">0 غ</b></div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section id="home" class="pane">
+      <div class="card tint">
+        <div class="head"><div><div class="title">قبل الوجبة</div><div class="muted">اختر نوع الوجبة وسجّل سكر الدم.</div></div><span class="badge green" id="mealTypeBadge">لم تُحدد</span></div>
+        <div class="field"><label>نوع الوجبة</label><div class="mealtypes" id="mealTypeButtons">
+          <button data-type="breakfast" onclick="setMealType('breakfast',this)">☀️ إفطار</button>
+          <button data-type="lunch" onclick="setMealType('lunch',this)">🍲 غداء</button>
+          <button data-type="dinner" onclick="setMealType('dinner',this)">🌙 عشاء</button>
+          <button data-type="snack" onclick="setMealType('snack',this)">🍎 وجبة خفيفة</button>
+        </div></div>
+        <div class="field"><label>سكر الدم قبل الوجبة mg/dL</label><input id="bg" type="number" inputmode="numeric" placeholder="مثال 145" oninput="calculate()"></div>
+        <div id="safety"></div>
+      </div>
+
+      <div class="card daily">
+        <div class="head"><div><div class="title">🎯 كربوهيدراتك اليومية</div><div class="muted">الرقم يتحدث عند تعديل بيانات الملف.</div></div></div>
+        <div class="dailygrid">
+          <div class="dkpi"><small>الاحتياج</small><b id="dailyTarget">—</b></div>
+          <div class="dkpi"><small>المسجل</small><b id="dailyLogged">0 غ</b></div>
+          <div class="dkpi"><small>المتبقي</small><b id="dailyRemain">—</b></div>
+        </div>
+        <div class="muted" id="dailyMessage" style="margin-top:9px"></div>
+      </div>
+
+      <div class="card">
+        <div class="head"><div><div class="title">وجبتك</div><div class="muted">أضف من الأصناف أو المطاعم، والتطبيق يجمع الكربوهيدرات تلقائيًا.</div></div><span class="badge green" id="mealCarbBadge">0 غ</span></div>
+        <div class="progress"><div id="mealProgress" style="width:0%"></div></div>
+        <div id="mealList" class="list" style="margin-top:10px"></div>
+      </div>
+
+      <div class="card smart">
+        <div class="head"><div><div class="title">✨ وجبة مقترحة لك</div><div class="muted">يتعلم من اختياراتك حسب نوع الوجبة. مفعّل الآن للتجربة، وبعد أسبوع يصبح التخصيص أدق.</div></div><span id="smartStatus" class="badge orange">تجريبي</span></div>
+        <div id="smartBox" class="smartbox">حدد نوع الوجبة ثم اضغط توليد.</div>
+        <div class="actions"><button class="btn primary" onclick="generateSmartMeal()">✨ ولّد وجبة</button><button class="btn ghost" onclick="applySmartMeal()">إضافة المقترح</button></div>
+      </div>
+
+      <div class="card">
+        <div class="head"><div><div class="title">النتيجة</div><div class="muted">جرعة الوجبة = كربوهيدرات الوجبة ÷ 15، ثم يضاف التصحيح.</div></div></div>
+        <div class="result">
+          <div class="metric"><span>الكربوهيدرات</span><b id="carbTotal">0 غ</b></div>
+          <div class="metric"><span>جرعة الوجبة</span><b id="mealDose">0 وحدة</b></div>
+          <div class="metric"><span>التصحيح</span><b id="corrDose">—</b></div>
+          <div class="metric total"><span>الإجمالي</span><b id="totalDose">—</b></div>
+        </div>
+        <div id="fatAdvice"></div>
+        <div id="equation" class="notice safe">أدخل السكر وأضف أصناف الوجبة ليظهر الإجمالي.</div>
+        <div class="actions"><button class="btn primary" onclick="saveMeal()">حفظ الوجبة</button><button class="btn ghost" onclick="resetMeal()">مسح</button></div>
+      </div>
+    </section>
+
+    <section id="foods" class="pane hidden">
+      <div class="card barcodeCard">
+        <div class="barcodeHero">
+          <div class="barcodeIcon">▥</div>
+          <div style="flex:1"><div class="title">مسح باركود المنتج</div><div class="muted">ابحث بالباركود في قاعدة عالمية كبيرة، ثم راجع الكربوهيدرات والحصة قبل إضافته. إذا لم يُوجد المنتج يمكنك إضافته من الملصق الغذائي.</div></div>
+        </div>
+        <div class="barcodeActions" style="margin-top:12px"><button class="btn primary" onclick="openBarcodeScanner()">📷 مسح الباركود</button><button class="btn ghost" onclick="openBarcodeManual()">⌨️ إدخال الرقم</button></div>
+        <div class="muted" style="margin-top:8px">المصدر الخارجي: Open Food Facts. المنتجات المحفوظة عندك تبقى في جهازك داخل «منتجات أضفتها».</div>
+      </div>
+      <div class="card">
+        <div class="head"><div><div class="title">🥗 مكتبة الأصناف</div><div class="muted">كميات واضحة تشمل الأصناف الأساسية وبراندات السعودية والسوق المحلي. ابحث باسم الشركة أو المنتج.</div></div></div>
+        <div class="chips foodMode" id="foodModeChips"><button class="chip active" data-mode="library" onclick="setFoodMode('library',this)">المكتبة</button><button class="chip" data-mode="mine" onclick="setFoodMode('mine',this)">منتجات أضفتها <span id="myProductsCount">0</span></button></div>
+        <input class="search" id="foodSearch" placeholder="ابحث عن صنف..." oninput="renderFoods()">
+        <div id="foodChips" class="chips"></div>
+        <div id="foodList" class="list" style="margin-top:10px"></div>
+      </div>
+    </section>
+
+    <section id="restaurants" class="pane hidden">
+      <div class="card">
+        <div class="head"><div><div class="title">🍽️ المطاعم</div><div class="muted">مطاعم عالمية وعربية مع شعار، مصدر البيانات، وخيارات بدون كاتشب/مايونيز وغيرها.</div></div></div>
+        <input class="search" id="restSearch" placeholder="ابحث عن مطعم أو وجبة..." oninput="renderRestaurants()">
+        <div id="restChips" class="chips"></div>
+        <div id="restList" style="margin-top:10px"></div>
+      </div>
+    </section>
+
+    <section id="history" class="pane hidden">
+      <div class="card"><div class="head"><div><div class="title">🕘 السجل</div><div class="muted">يساعد التطبيق على فهم اختياراتك وتخصيص اقتراحات الوجبات.</div></div></div><div id="historyList"></div></div>
+    </section>
+
+    <section id="profile" class="pane hidden">
+      <div class="card"><div class="head"><div><div class="title">👤 ملفي</div><div class="muted">بياناتك الأساسية وإعدادات المتابعة.</div></div></div><div id="profileGrid" class="profileGrid"></div></div>
+      <div class="card tint">
+        <div class="title">⚙️ تعديل البيانات</div><div class="divider"></div>
+        <div class="grid">
+          <div class="field" style="grid-column:1/-1"><label>اسم المريض</label><input id="sName" type="text"></div>
+          <div class="field"><label>العمر</label><input id="sAge" type="number"></div><div class="field"><label>الجنس</label><select id="sSex"><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
+          <div class="field"><label>الوزن</label><input id="sWeight" type="number" step="0.1"></div><div class="field"><label>الطول</label><input id="sHeight" type="number"></div>
+          <div class="field"><label>HbA1c</label><input id="sA1c" type="number" step="0.1"></div><div class="field"><label>تاريخ HbA1c</label><input id="sA1cDate" type="date"></div>
+          <div class="field"><label>الطويل المفعول</label><input id="sBasal" type="number" step="0.5"></div><div class="field"><label>وقته</label><input id="sBasalTime" type="time"></div>
+          <div class="field" style="grid-column:1/-1"><label>النشاط</label><select id="sActivity"><option value="1.2">قليل جدًا</option><option value="1.375">خفيف</option><option value="1.55">متوسط</option><option value="1.725">مرتفع</option></select></div>
+        </div>
+        <button class="btn primary full" onclick="saveSettings()">حفظ التعديلات</button>
+      </div>
+      <div class="card">
+        <div class="title">📱 تثبيت ومعاينة</div><div class="muted" style="margin:5px 0 10px">ثبت التطبيق على الشاشة الرئيسية أو عاين عرض الواجهة حسب الجهاز.</div>
+        <div class="actions"><button class="btn primary" onclick="installApp()">تثبيت التطبيق</button><button class="btn ghost" onclick="showInstallHelp()">طريقة التثبيت</button></div>
+        <div class="divider"></div>
+        <div class="previewBtns" id="previewBtns"><button data-v="auto" class="active" onclick="setPreview('auto',this)">تلقائي</button><button data-v="phone" onclick="setPreview('phone',this)">iPhone</button><button data-v="tablet" onclick="setPreview('tablet',this)">Tablet</button><button data-v="desktop" onclick="setPreview('desktop',this)">Desktop</button></div>
+        <div class="muted" style="margin-top:8px">وضع المعاينة يظهر فرق العرض بشكل أوضح عند فتح الرابط من كمبيوتر أو جهاز لوحي.</div>
+      </div>
+      <div class="card tint"><div class="notice info">معامل 1:15 في هذه النسخة قيمة مبدئية للاختبار. استخدام أي حاسبة جرعة سريريًا يجب أن يطابق خطة الإنسولين الفردية للمريض.</div></div>
+      <div class="footer">CarbDose • أداة دعم حسابي وتعليمي وليست بديلاً عن الفريق المعالج.</div>
+    </section>
+  </main>
+</div>
+
+<nav class="bottom"><div class="bottomInner">
+<button class="nav active" data-tab="home" onclick="showTab('home',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>الرئيسية</button>
+<button class="nav" data-tab="foods" onclick="showTab('foods',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c7 0 14-6 16-16-10 2-16 9-16 16z"/><path d="M4 20c4-6 8-10 16-16"/></svg>الأصناف</button>
+<button class="nav" data-tab="restaurants" onclick="showTab('restaurants',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 3v8M8 3v8M4 7h4M6 11v10M15 3v18M15 3c4 0 5 4 5 8h-5"/></svg>المطاعم</button>
+<button class="nav" data-tab="history" onclick="showTab('history',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>السجل</button>
+<button class="nav" data-tab="profile" onclick="showTab('profile',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg>ملفي</button>
+</div></nav>
+
+<div id="modal" class="modal hidden"><div class="modalCard"><div class="head"><div><div id="modalTitle" class="title">تخصيص الوجبة</div><div id="modalSubtitle" class="muted"></div></div><button class="btn ghost" onclick="closeModal()">إغلاق</button></div><div id="modalBody"></div><button class="btn primary full" style="margin-top:12px" onclick="confirmCustomMeal()">إضافة للوجبة</button></div></div>
+
+<div id="barcodeModal" class="barcodeModal hidden"><div class="barcodeModalCard">
+  <div class="head"><div><div class="title">▥ ماسح الباركود</div><div class="muted">امسح EAN/UPC أو أدخل الرقم يدويًا.</div></div><button class="btn ghost" onclick="closeBarcodeScanner()">إغلاق</button></div>
+  <div id="barcodeReader" class="barcodeReader"></div>
+  <div class="manualBarcode"><input id="barcodeInput" inputmode="numeric" autocomplete="off" placeholder="اكتب رقم الباركود"><button class="btn soft" onclick="lookupBarcode(barcodeInput.value)">بحث</button></div>
+  <div id="barcodeStatus" class="scannerStatus"></div>
+  <div id="barcodeResult"></div>
+</div></div>
+
+<script>
+const ICR = 15;
+const CORRECTION = [{max:149,u:0},{max:200,u:1},{max:300,u:2},{max:400,u:3}];
+const MEAL_LABELS={breakfast:'إفطار',lunch:'غداء',dinner:'عشاء',snack:'وجبة خفيفة'};
+const MEAL_SHARE={breakfast:.25,lunch:.35,dinner:.30,snack:.10};
+const FOOD_DB={
+'نشويات وحبوب':[
+{name:'توست أبيض/أسمر',portion:'شريحة واحدة',carb:15},{name:'خبز برجر',portion:'شريحة واحدة',carb:15},{name:'خبز برجر كامل',portion:'شريحتان',carb:30},{name:'خبز عربي',portion:'¼ رغيف متوسط',carb:15},{name:'صامولي',portion:'½ حبة',carb:15},{name:'تميس',portion:'⅛ رغيف',carb:15},{name:'تورتيلا',portion:'½ حبة متوسطة',carb:15},{name:'رز مطبوخ',portion:'6 ملاعق طعام',carb:15},{name:'مكرونة مطبوخة',portion:'8 ملاعق طعام',carb:15},{name:'برغل مطبوخ',portion:'6 ملاعق طعام',carb:15},{name:'جريش/هريس',portion:'6 ملاعق طعام',carb:15},{name:'كسكس مطبوخ',portion:'6 ملاعق طعام',carb:15},{name:'بطاطس مسلوقة/مشوية',portion:'1 حبة صغيرة',carb:15},{name:'بطاطس مهروسة',portion:'½ كوب',carb:15},{name:'بطاطس مقلية',portion:'10 أصابع صغيرة',carb:15,highFat:true},{name:'ذرة',portion:'½ كوب',carb:15},{name:'شوفان مطبوخ',portion:'½ كوب',carb:15},{name:'كورن فليكس',portion:'½ كوب',carb:15},{name:'كراكر',portion:'4 قطع',carb:15},{name:'شابورة',portion:'2 قطعة متوسطة',carb:15},{name:'بان كيك صغير',portion:'1 حبة صغيرة',carb:15},{name:'فشار بدون سكر',portion:'3 أكواب',carb:15}],
+'فواكه':[
+{name:'تفاح',portion:'1 حبة متوسطة',carb:15},{name:'برتقال',portion:'1 حبة متوسطة',carb:15},{name:'كمثرى',portion:'1 حبة متوسطة',carb:15},{name:'خوخ',portion:'1 حبة متوسطة',carb:15},{name:'كيوي',portion:'1 حبة متوسطة',carb:15},{name:'جوافة',portion:'1 حبة متوسطة',carb:15},{name:'موز',portion:'½ حبة متوسطة',carb:15},{name:'يوسفي',portion:'2 حبة متوسطة',carb:15},{name:'تمر/رطب',portion:'3 حبات',carb:15},{name:'عنب صغير',portion:'10 حبات',carb:15},{name:'عنب كبير',portion:'5 حبات',carb:15},{name:'كرز',portion:'10 حبات',carb:15},{name:'تين',portion:'2 حبة متوسطة',carb:15},{name:'برقوق',portion:'2 حبة',carb:15},{name:'أناناس',portion:'2 شريحة',carb:15},{name:'رمان',portion:'½ حبة',carb:15},{name:'مانجو',portion:'½ حبة صغيرة',carb:15},{name:'بطيخ',portion:'شريحة متوسطة',carb:15},{name:'شمام',portion:'شريحة متوسطة',carb:15},{name:'فراولة',portion:'حوالي 1¼ كوب',carb:15},{name:'عصير فاكهة',portion:'½ كوب',carb:15}],
+'خضار':[
+{name:'خيار',portion:'1 حبة متوسطة أو 1 كوب مقطع',carb:5},{name:'طماطم',portion:'1 حبة متوسطة أو 1 كوب مقطع',carb:5},{name:'خس',portion:'2 كوب أوراق',carb:5},{name:'جرجير',portion:'2 كوب أوراق',carb:5},{name:'سبانخ طازجة',portion:'2 كوب أوراق',carb:5},{name:'سبانخ مطبوخة',portion:'½ كوب',carb:5},{name:'بروكلي مطبوخ',portion:'½ كوب',carb:5},{name:'قرنبيط مطبوخ',portion:'½ كوب',carb:5},{name:'كوسا مطبوخة',portion:'½ كوب',carb:5},{name:'باذنجان مطبوخ',portion:'½ كوب',carb:5},{name:'بامية مطبوخة',portion:'½ كوب',carb:5},{name:'ملوخية مطبوخة',portion:'½ كوب',carb:5},{name:'ملفوف مطبوخ',portion:'½ كوب',carb:5},{name:'فلفل رومي',portion:'1 حبة متوسطة',carb:5},{name:'جزر',portion:'1 حبة متوسطة',carb:5},{name:'بصل',portion:'½ حبة متوسطة',carb:5},{name:'كرفس',portion:'1 كوب مقطع',carb:5},{name:'فطر/مشروم',portion:'1 كوب نيء أو ½ كوب مطبوخ',carb:5},{name:'فاصوليا خضراء',portion:'½ كوب مطبوخ',carb:5},{name:'يقطين/قرع',portion:'½ كوب مطبوخ',carb:5},{name:'سلطة خضراء مشكلة',portion:'1½–2 كوب بدون صوص سكري',carb:5},{name:'تبولة',portion:'½ كوب',carb:10},{name:'خضار مشكلة مطبوخة',portion:'½ كوب',carb:5}],
+'حليب وألبان':[
+{name:'حليب بقري',portion:'1 كوب 240 مل',carb:12},{name:'لبن',portion:'1 كوب 240 مل',carb:12},{name:'زبادي طبيعي',portion:'1 علبة/كوب',carb:12},{name:'زبادي يوناني غير محلى',portion:'1 علبة صغيرة',carb:8},{name:'حليب صويا محلى',portion:'1 كوب',carb:15},{name:'حليب مبخر',portion:'½ كوب',carb:12},{name:'حليب بودرة',portion:'¼ كوب بودرة',carb:12}],
+'لحوم وبروتين':[
+{name:'صدر دجاج مشوي',portion:'100 غ',carb:0},{name:'فخذ دجاج بدون تغليف',portion:'100 غ',carb:0,highFat:true},{name:'لحم بقري قليل الدهن',portion:'100 غ',carb:0},{name:'لحم غنم',portion:'100 غ',carb:0,highFat:true},{name:'كفتة/كباب بدون خبز',portion:'100 غ',carb:2,highFat:true},{name:'سمك مشوي',portion:'120 غ',carb:0},{name:'سلمون',portion:'120 غ',carb:0,highFat:true},{name:'تونة بالماء',portion:'½ علبة',carb:0},{name:'تونة بالزيت',portion:'½ علبة',carb:0,highFat:true},{name:'روبيان مشوي',portion:'100 غ',carb:1},{name:'بيض',portion:'1 بيضة',carb:1},{name:'بياض بيض',portion:'2 بياض',carb:1},{name:'فول مطبوخ',portion:'½ كوب',carb:15},{name:'عدس مطبوخ',portion:'½ كوب',carb:15},{name:'حمص مطبوخ',portion:'⅓–½ كوب',carb:15},{name:'فاصوليا مطبوخة',portion:'½ كوب',carb:15}],
+'أجبان':[
+{name:'جبن شيدر',portion:'شريحة 20–25 غ',carb:1,highFat:true},{name:'جبن موزاريلا',portion:'30 غ',carb:1,highFat:true},{name:'جبن فيتا',portion:'30 غ',carb:1,highFat:true},{name:'جبن قريش',portion:'½ كوب',carb:5},{name:'جبن كريمي',portion:'ملعقتان طعام',carb:2,highFat:true},{name:'جبن حلوم',portion:'30 غ',carb:1,highFat:true},{name:'جبن أبيض',portion:'30 غ',carb:1,highFat:true},{name:'لبنة',portion:'¼ كوب',carb:5,highFat:true},{name:'بارميزان',portion:'ملعقتان طعام مبشور',carb:1,highFat:true}],
+'دهون ومكسرات':[
+{name:'زيت زيتون',portion:'1 ملعقة طعام',carb:0,highFat:true},{name:'زيت نباتي',portion:'1 ملعقة طعام',carb:0,highFat:true},{name:'زبدة',portion:'1 ملعقة شاي',carb:0,highFat:true},{name:'سمن',portion:'1 ملعقة شاي',carb:0,highFat:true},{name:'أفوكادو',portion:'¼ حبة متوسطة',carb:4,highFat:true},{name:'زيتون',portion:'10 حبات صغيرة',carb:2,highFat:true},{name:'لوز',portion:'10 حبات',carb:3,highFat:true},{name:'فستق',portion:'15 حبة',carb:4,highFat:true},{name:'كاجو',portion:'10 حبات',carb:9,highFat:true},{name:'فول سوداني',portion:'ملعقتان طعام',carb:4,highFat:true},{name:'زبدة فول سوداني',portion:'ملعقة طعام',carb:4,highFat:true},{name:'طحينة',portion:'ملعقة طعام',carb:3,highFat:true}],
+'صوصات وإضافات':[
+{name:'كاتشب',portion:'1 ملعقة طعام',carb:4},{name:'مايونيز',portion:'1 ملعقة طعام',carb:1,highFat:true},{name:'صوص باربكيو',portion:'1 ملعقة طعام',carb:7},{name:'رانش',portion:'1 ملعقة طعام',carb:2,highFat:true},{name:'ثاوزند آيلاند',portion:'1 ملعقة طعام',carb:3,highFat:true},{name:'صوص ثوم/ثومية',portion:'1 ملعقة طعام',carb:2,highFat:true},{name:'خردل',portion:'1 ملعقة طعام',carb:1},{name:'صوص حار',portion:'1 ملعقة طعام',carb:1},{name:'صوص جبن',portion:'2 ملعقة طعام',carb:5,highFat:true},{name:'دبس رمان',portion:'1 ملعقة طعام',carb:10},{name:'حمص/هُمّص كصوص',portion:'2 ملعقة طعام',carb:5,highFat:true}],
+'براندات السعودية والسوق المحلي':[
+{name:'ليز كلاسيك',brand:'Lay’s',portion:'28 غ',carb:15,highFat:true,quality:'مرجع PepsiCo الرسمي - طابق نكهة العبوة'},
+{name:'ليز كلاسيك',brand:'Lay’s',portion:'56 غ',carb:30,highFat:true,quality:'محسوب من الحصة الرسمية 28 غ'},
+{name:'البطل شيبس',brand:'البطل',portion:'28 غ',carb:15,highFat:true,quality:'تقديري - طابق ملصق النكهة والحجم'},
+{name:'تسالي شيبس',brand:'تسالي',portion:'28 غ',carb:15,highFat:true,quality:'تقديري - طابق ملصق النكهة والحجم'},
+{name:'دانيت شوكولاتة',brand:'Danette',portion:'علبة 125 غ',carb:21.9,highFat:true,quality:'مرجعي - قد تختلف تركيبة السوق المحلي'},
+{name:'دانيت فانيلا',brand:'Danette',portion:'علبة 125 غ',carb:21.8,highFat:true,quality:'مرجعي - قد تختلف تركيبة السوق المحلي'},
+{name:'عصير تفاح 100% بدون سكر مضاف',brand:'المراعي',portion:'200 مل',carb:22,quality:'المراعي رسمي - 11 غ/100مل'},
+{name:'عصير تفاح 100% بدون سكر مضاف',brand:'المراعي',portion:'300 مل',carb:33,quality:'المراعي رسمي - 11 غ/100مل'},
+{name:'عصير مانجو',brand:'المراعي',portion:'200 مل',carb:27,quality:'المراعي - طابق العبوة الحالية'},
+{name:'حليب كامل الدسم',brand:'المراعي',portion:'250 مل',carb:12,quality:'المراعي - طابق العبوة الحالية'},
+{name:'لبن كامل الدسم',brand:'المراعي',portion:'180 مل',carb:8.3,quality:'المراعي - طابق العبوة الحالية'},
+{name:'خبز توست لوزين',brand:'L’usine / المراعي',portion:'شريحتان',carb:30,quality:'تقديري حسب الحصص - طابق ملصق المنتج'},
+{name:'كرواسون لوزين',brand:'L’usine / المراعي',portion:'1 حبة',carb:30,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'حليب كامل الدسم',brand:'نادك',portion:'200 مل',carb:9.4,quality:'نادك رسمي - 4.7 غ/100مل'},
+{name:'حليب خالي الدسم',brand:'نادك',portion:'200 مل',carb:9.4,quality:'نادك رسمي - 4.7 غ/100مل'},
+{name:'لبن كامل الدسم',brand:'نادك',portion:'200 مل',carb:9.4,quality:'نادك رسمي - 4.7 غ/100مل'},
+{name:'لبن قليل الدسم',brand:'نادك',portion:'200 مل',carb:9.4,quality:'نادك رسمي - 4.7 غ/100مل'},
+{name:'شراب حليب فراولة عالي البروتين',brand:'نادك',portion:'350 مل',carb:32.6,quality:'نادك رسمي - 9.3 غ/100مل'},
+{name:'نكتار مانجو وفواكه مشكلة',brand:'نادك',portion:'200 مل',carb:19.6,quality:'نادك - 9.8 غ/100مل'},
+{name:'عصير تفاح بدون سكر مضاف',brand:'ندى',portion:'200 مل',carb:26.4,quality:'ندى - قيمة منتج مرجعية'},
+{name:'عصير مانجو وفواكه مشكلة',brand:'ندى',portion:'200 مل',carb:30.2,quality:'ندى - قيمة منتج مرجعية'},
+{name:'كوكتيل استوائي',brand:'ندى',portion:'200 مل',carb:25,quality:'ندى - قيمة منتج مرجعية'},
+{name:'حليب طازج كامل الدسم',brand:'ندى',portion:'200 مل',carb:10,quality:'تقديري - طابق ملصق العبوة'},
+{name:'لبن طازج',brand:'ندى',portion:'200 مل',carb:10,quality:'تقديري - طابق ملصق العبوة'},
+{name:'حليب كامل الدسم',brand:'الصافي دانون',portion:'200 مل',carb:9.2,quality:'مرجعي - تحقق من الملصق الحالي'},
+{name:'لبن',brand:'الصافي دانون',portion:'200 مل',carb:9.2,quality:'مرجعي - تحقق من الملصق الحالي'},
+{name:'زبادي طبيعي',brand:'الصافي دانون',portion:'علبة 170 غ',carb:12,quality:'تقديري - طابق ملصق العبوة'},
+{name:'حليب كامل الدسم',brand:'السعودية / SADAFCO',portion:'200 مل',carb:10,quality:'SADAFCO رسمي - 5 غ/100مل'},
+{name:'حليب قليل الدسم',brand:'السعودية / SADAFCO',portion:'200 مل',carb:10,quality:'SADAFCO رسمي - 5 غ/100مل'},
+{name:'حليب خالي اللاكتوز',brand:'السعودية / SADAFCO',portion:'200 مل',carb:10,quality:'SADAFCO رسمي - 5 غ/100مل'},
+{name:'حليب شوكولاتة',brand:'السعودية / SADAFCO',portion:'200 مل',carb:26,quality:'SADAFCO رسمي - 13 غ/100مل'},
+{name:'حليب دبل شوكولاتة',brand:'السعودية / SADAFCO',portion:'200 مل',carb:27,quality:'SADAFCO رسمي - 13.5 غ/100مل'},
+{name:'حليب فانيلا',brand:'السعودية / SADAFCO',portion:'200 مل',carb:19,quality:'SADAFCO رسمي - 9.5 غ/100مل'},
+{name:'حليب Cotton Candy',brand:'السعودية / SADAFCO',portion:'200 مل',carb:20,quality:'SADAFCO رسمي - 10 غ/100مل'},
+{name:'معجون طماطم',brand:'السعودية / SADAFCO',portion:'2 ملعقة طعام',carb:6,quality:'تقديري - طابق الملصق'},
+{name:'عصير تفاح',brand:'الربيع',portion:'200 مل',carb:24,quality:'تقديري - طابق ملصق العبوة'},
+{name:'عصير مانجو',brand:'الربيع',portion:'200 مل',carb:28,quality:'تقديري - طابق ملصق العبوة'},
+{name:'كوكتيل فواكه',brand:'الربيع',portion:'200 مل',carb:26,quality:'تقديري - طابق ملصق العبوة'},
+{name:'حليب طويل الأجل',brand:'الربيع',portion:'200 مل',carb:10,quality:'تقديري - طابق ملصق العبوة'},
+{name:'تونة خفيفة بالماء',brand:'قودي',portion:'½ علبة',carb:0,quality:'قودي - الكربوهيدرات شبه معدومة؛ طابق الملصق'},
+{name:'مايونيز',brand:'قودي',portion:'1 ملعقة طعام',carb:1,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'زبدة فول سوداني',brand:'قودي',portion:'1 ملعقة طعام',carb:4,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'مكرونة جافة',brand:'قودي',portion:'56 غ جاف',carb:42,quality:'تقديري - طابق ملصق نوع المكرونة'},
+{name:'ذرة حلوة معلبة',brand:'قودي',portion:'½ كوب',carb:15,quality:'تقديري - طابق الملصق'},
+{name:'فاصوليا حمراء معلبة',brand:'قودي',portion:'½ كوب',carb:20,quality:'تقديري - طابق الملصق'},
+{name:'حمص معلب',brand:'قودي',portion:'½ كوب',carb:20,quality:'تقديري - طابق الملصق'},
+{name:'ورق عنب محشي',brand:'قودي',portion:'5 حبات',carb:30,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'بسكويت شاي',brand:'ديمة',portion:'4 قطع',carb:20,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'معمول تمر',brand:'ديمة',portion:'2 حبة صغيرة',carb:30,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'ويفر',brand:'ديمة',portion:'1 عبوة صغيرة',carb:25,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'كيك مغلف',brand:'ديمة',portion:'1 حبة',carb:30,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'معمول تمر',brand:'حلواني إخوان',portion:'2 حبة صغيرة',carb:30,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'حلاوة طحينية',brand:'حلواني إخوان',portion:'30 غ',carb:15,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'طحينة',brand:'حلواني إخوان',portion:'1 ملعقة طعام',carb:3,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'مربى',brand:'حلواني إخوان',portion:'1 ملعقة طعام',carb:13,quality:'تقديري - طابق ملصق النكهة'},
+{name:'عجينة سمبوسة',brand:'سنبلة',portion:'2 شريحة',carb:15,quality:'تقديري - طابق ملصق المنتج'},
+{name:'عجينة بف باستري',brand:'سنبلة',portion:'30 غ',carb:15,highFat:true,quality:'تقديري - طابق ملصق المنتج'},
+{name:'ملوخية مجمدة',brand:'سنبلة',portion:'½ كوب مطبوخ',carb:5,quality:'تقديري حسب الحصة'},
+{name:'خضار مشكلة مجمدة',brand:'سنبلة',portion:'½ كوب مطبوخ',carb:10,quality:'تقديري - يختلف حسب الخليط'},
+{name:'مكرونة جافة',brand:'وفرة',portion:'56 غ جاف',carb:42,quality:'تقديري - طابق ملصق المنتج'},
+{name:'كورن فليكس',brand:'وفرة',portion:'30 غ',carb:24,quality:'تقديري - طابق ملصق المنتج'},
+{name:'زبدة فول سوداني',brand:'وفرة',portion:'1 ملعقة طعام',carb:4,highFat:true,quality:'تقديري - طابق الملصق'},
+{name:'زيت عافية',brand:'سافولا / عافية',portion:'1 ملعقة طعام',carb:0,highFat:true,quality:'زيت - 0 غ كربوهيدرات'},
+{name:'زيت العربي',brand:'سافولا / العربي',portion:'1 ملعقة طعام',carb:0,highFat:true,quality:'زيت - 0 غ كربوهيدرات'},
+{name:'سكر الأسرة',brand:'سافولا / الأسرة',portion:'1 ملعقة طعام ≈ 15 غ',carb:15,quality:'سكر - الكمية نفسها تقريبًا كربوهيدرات'},
+{name:'تمر سكري',brand:'بتيل / تمور سعودية',portion:'3 حبات متوسطة',carb:15,quality:'تقديري حسب الحجم والنوع'},
+{name:'خبز برجر',brand:'هرفي للمخبوزات',portion:'1 حبة كاملة',carb:30,quality:'تقديري حسب الحصص - طابق الملصق'},
+{name:'خبز توست',brand:'هرفي للمخبوزات',portion:'شريحتان',carb:30,quality:'تقديري حسب الحصص - طابق الملصق'},
+{name:'مشروب راني فواكه',brand:'Rani / السوق السعودي',portion:'240 مل',carb:30,quality:'تقديري - طابق الملصق'},
+{name:'باربيكان مشروب شعير',brand:'Barbican / السوق السعودي',portion:'250 مل',carb:30,quality:'تقديري - طابق النكهة والملصق'}
+],
+'حلويات وسناك':[
+{name:'دونات',portion:'1 حبة متوسطة',carb:30,highFat:true},{name:'كرواسون سادة',portion:'1 حبة',carb:30,highFat:true},{name:'مافن',portion:'1 حبة',carb:45,highFat:true},{name:'كوكي',portion:'1 حبة متوسطة',carb:30,highFat:true},{name:'كنافة',portion:'قطعة متوسطة',carb:45,highFat:true},{name:'لقيمات',portion:'5 حبات',carb:30,highFat:true},{name:'شوكولاتة',portion:'قطعة 30 غ',carb:15,highFat:true},{name:'آيس كريم',portion:'½ كوب',carb:15,highFat:true},{name:'شيبس',portion:'كيس صغير 25–30 غ',carb:15,highFat:true}]
+};
+
+const RESTAURANTS=[
+{name:"McDonald's",type:'عالمية',domain:'mcdonalds.com',meals:[
+{name:'Big Mac',carb:48,quality:'رسمي',highFat:true,mods:[['بدون كاتشب',-4],['بدون صوص بيج ماك',-3],['بدون شريحة خبز',-15],['إضافة جبن',1]]},
+{name:'McChicken',carb:44,quality:'رسمي/مرجعي',highFat:true,mods:[['بدون مايونيز',-1],['بدون شريحة خبز',-15],['إضافة جبن',1]]},
+{name:'Cheeseburger',carb:33,quality:'مرجعي',highFat:true,mods:[['بدون كاتشب',-4],['بدون خبز علوي',-15]]},
+{name:'Hamburger',carb:31,quality:'مرجعي',highFat:true,mods:[['بدون كاتشب',-4],['بدون خبز علوي',-15]]},
+{name:'بطاطس صغيرة',carb:29,quality:'مرجعي',highFat:true,mods:[]},{name:'بطاطس وسط',carb:44,quality:'مرجعي',highFat:true,mods:[]},{name:'بطاطس كبيرة',carb:66,quality:'مرجعي',highFat:true,mods:[]},
+{name:'6 قطع ناجتس',carb:15,quality:'تقديري',highFat:true,mods:[['بدون صوص',-5]]},{name:'كولا عادية صغيرة',carb:30,quality:'تقديري',mods:[]},{name:'كولا زيرو',carb:0,quality:'تقديري',mods:[]}]},
+{name:'Burger King',type:'عالمية',domain:'burgerking.com',meals:[
+{name:'Whopper',carb:50,quality:'رسمي',highFat:true,mods:[['بدون كاتشب',-4],['بدون مايونيز',-1],['بدون خبز علوي',-15],['إضافة جبن',1]]},{name:'Whopper Jr.',carb:34,quality:'رسمي/مرجعي',highFat:true,mods:[['بدون كاتشب',-4],['بدون مايونيز',-1]]},{name:'Double Whopper',carb:59,quality:'رسمي/مرجعي',highFat:true,mods:[['بدون كاتشب',-4],['بدون مايونيز',-1]]},{name:'بطاطس صغيرة',carb:24,quality:'رسمي',highFat:true,mods:[]},{name:'بطاطس وسط',carb:43,quality:'مرجعي',highFat:true,mods:[]},{name:'Onion Rings',carb:35,quality:'تقديري',highFat:true,mods:[]}]},
+{name:'KFC',type:'عالمية',domain:'kfc.com',meals:[
+{name:'Zinger Sandwich',carb:45,quality:'تقديري',highFat:true,mods:[['بدون مايونيز',-1],['بدون خبز علوي',-15],['بدون كاتشب',-4]]},{name:'Mighty Zinger',carb:60,quality:'تقديري',highFat:true,mods:[['بدون مايونيز',-1],['بدون شريحة خبز',-15]]},{name:'Twister',carb:45,quality:'تقديري',highFat:true,mods:[['بدون مايونيز',-1]]},{name:'بطاطس صغيرة',carb:30,quality:'تقديري',highFat:true,mods:[]},{name:'كولسلو صغير',carb:15,quality:'تقديري',mods:[]},{name:'خبز رول',carb:15,quality:'تقديري',mods:[]}]},
+{name:'Subway',type:'عالمية',domain:'subway.com',meals:[
+{name:'ساندويتش 6 إنش',carb:45,quality:'تقديري',mods:[['بدون صوص',-5],['إضافة جبن',1]]},{name:'ساندويتش Footlong',carb:90,quality:'تقديري',mods:[['بدون صوص',-10],['إضافة جبن',2]]},{name:'Wrap',carb:30,quality:'تقديري',mods:[['بدون صوص',-5]]},{name:'سلطة بروتين',carb:8,quality:'تقديري',mods:[['بدون صوص',-5]]},{name:'كوكي',carb:30,quality:'تقديري',highFat:true,mods:[]}]},
+{name:'Pizza Hut',type:'عالمية',domain:'pizzahut.com',meals:[
+{name:'شريحة Thin Crust',carb:30,quality:'تقديري',highFat:true,mods:[]},{name:'شريحة Pan',carb:40,quality:'تقديري',highFat:true,mods:[]},{name:'شريحة Stuffed Crust',carb:45,quality:'تقديري',highFat:true,mods:[]},{name:'Breadsticks قطعتان',carb:30,quality:'تقديري',highFat:true,mods:[['بدون صوص',-5]]}]},
+{name:"Domino's",type:'عالمية',domain:'dominos.com',meals:[
+{name:'شريحة بيتزا عادية',carb:30,quality:'تقديري',highFat:true,mods:[]},{name:'شريحة سميكة',carb:40,quality:'تقديري',highFat:true,mods:[]},{name:'شريحة أطراف محشية',carb:45,quality:'تقديري',highFat:true,mods:[]},{name:'Cheesy Bread قطعتان',carb:30,quality:'تقديري',highFat:true,mods:[]}]},
+{name:'Starbucks',type:'عالمية',domain:'starbucks.com',meals:[
+{name:'Caffè Latte Grande',carb:18,quality:'مرجعي',mods:[]},{name:'Cappuccino Grande',carb:12,quality:'مرجعي',mods:[]},{name:'Vanilla Latte Grande',carb:37,quality:'مرجعي',mods:[['بدون سيرب',-19]]},{name:'Caramel Frappuccino Grande',carb:57,quality:'مرجعي',highFat:true,mods:[['بدون كريمة',-5],['بدون درزل كراميل',-6]]},{name:'Butter Croissant',carb:27,quality:'رسمي/مرجعي',highFat:true,mods:[]},{name:'Iced Lemon Loaf',carb:59,quality:'رسمي',highFat:true,mods:[]}]},
+{name:"Dunkin'",type:'عالمية',domain:'dunkindonuts.com',meals:[
+{name:'Glazed Donut',carb:30,quality:'تقديري',highFat:true,mods:[]},{name:'Filled Donut',carb:45,quality:'تقديري',highFat:true,mods:[]},{name:'Croissant',carb:30,quality:'تقديري',highFat:true,mods:[]},{name:'Bagel',carb:45,quality:'تقديري',mods:[]},{name:'Hot Chocolate',carb:30,quality:'تقديري',mods:[]}]},
+{name:"Hardee's",type:'عالمية',domain:'hardees.com',meals:[{name:'Classic Burger',carb:45,quality:'تقديري',highFat:true,mods:[['بدون كاتشب',-4],['بدون مايونيز',-1],['بدون خبز علوي',-15]]},{name:'Chicken Sandwich',carb:45,quality:'تقديري',highFat:true,mods:[['بدون مايونيز',-1]]},{name:'بطاطس صغيرة',carb:30,quality:'تقديري',highFat:true,mods:[]}]},
+{name:'Five Guys',type:'عالمية',domain:'fiveguys.com',meals:[{name:'Hamburger',carb:40,quality:'تقديري',highFat:true,mods:[['بدون كاتشب',-4],['بدون مايونيز',-1],['بدون خبز',-30]]},{name:'Little Hamburger',carb:40,quality:'تقديري',highFat:true,mods:[['بدون خبز',-30]]},{name:'Fries Little',carb:45,quality:'تقديري',highFat:true,mods:[]}]},
+{name:'البيك',type:'عربية',domain:'albaik.com',meals:[{name:'برجر فيليه دجاج',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[['بدون مايونيز',-1],['بدون كاتشب',-4],['بدون خبز علوي',-15]]},{name:'ساندويتش دجاج',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[['بدون صوص',-3]]},{name:'بطاطس',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[]},{name:'صوص ثوم',carb:2,quality:'تقديري من الحصص',highFat:true,mods:[]},{name:'كولسلو',carb:15,quality:'تقديري من الحصص',mods:[]}]},
+{name:'هرفي',type:'عربية',domain:'herfy.com',meals:[{name:'برجر لحم',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[['بدون كاتشب',-4],['بدون مايونيز',-1],['بدون خبز علوي',-15]]},{name:'برجر دجاج',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[['بدون مايونيز',-1]]},{name:'بطاطس صغيرة',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[]},{name:'آيس كريم',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[]}]},
+{name:'كودو',type:'عربية',domain:'kudu.com.sa',meals:[{name:'ساندويتش دجاج',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[['بدون مايونيز',-1],['بدون صوص',-4]]},{name:'ساندويتش ستيك',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[['بدون صوص',-4]]},{name:'فطور بيض وجبن',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[['بدون جبن',-1]]},{name:'بطاطس',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[]}]},
+{name:'شاورمر',type:'عربية',domain:'shawarmer.com',meals:[{name:'شاورما دجاج ملفوفة',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[['بدون ثومية',-2],['بدون بطاطس داخلية',-15]]},{name:'شاورما لحم ملفوفة',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[['بدون طحينة',-3]]},{name:'عربي دجاج صغير',carb:60,quality:'تقديري من الحصص',highFat:true,mods:[['بدون ثومية',-2],['بدون بطاطس',-15]]},{name:'بطاطس جانبية',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[]}]},
+{name:'مايسترو بيتزا',type:'عربية',domain:'maestropizza.com',meals:[{name:'شريحة عادية',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[]},{name:'شريحة أطراف محشية',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[]},{name:'Breadsticks',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[['بدون صوص',-5]]}]},
+{name:'الطازج',type:'عربية',domain:'altazaj.com',meals:[{name:'برجر دجاج',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[['بدون مايونيز',-1],['بدون خبز علوي',-15]]},{name:'خبز عربي',carb:30,quality:'تقديري من الحصص',mods:[]},{name:'رز',carb:45,quality:'تقديري من الحصص',mods:[]},{name:'بطاطس',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[]}]},
+{name:'بيت الشاورما',type:'عربية',domain:'shawarmahouse.sa',meals:[{name:'شاورما ملفوفة',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[['بدون ثومية',-2],['بدون بطاطس',-15]]},{name:'شاورما عربي',carb:60,quality:'تقديري من الحصص',highFat:true,mods:[['بدون ثومية',-2]]},{name:'صحن شاورما بدون خبز',carb:5,quality:'تقديري من الحصص',highFat:true,mods:[]},{name:'حمص جانبي',carb:15,quality:'تقديري من الحصص',highFat:true,mods:[]}]},
+{name:'ماما نورة',type:'عربية',domain:'mamanoura.com',meals:[{name:'شاورما دجاج',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[['بدون ثومية',-2]]},{name:'شاورما لحم',carb:45,quality:'تقديري من الحصص',highFat:true,mods:[['بدون طحينة',-3]]},{name:'فلافل ساندويتش',carb:30,quality:'تقديري من الحصص',highFat:true,mods:[['بدون طحينة',-3]]},{name:'عصير صغير',carb:30,quality:'تقديري من الحصص',mods:[]}]}
+];
+
+let profile=JSON.parse(localStorage.getItem('cd_profile_v3')||localStorage.getItem('cd_profile')||'null');
+let history=JSON.parse(localStorage.getItem('cd_history_v3')||localStorage.getItem('cd_history')||'[]');
+let meal=[];let mealType='';let foodCat=Object.keys(FOOD_DB)[0];let foodMode='library';let userProducts=JSON.parse(localStorage.getItem('cd_user_products_v1')||'[]');let restType='الكل';let smartDraft=[];let customCtx=null;let deferredInstallPrompt=null;let previewMode=localStorage.getItem('cd_preview')||'auto';let barcodeScanner=null;let barcodeBusy=false;let scannedProduct=null;
+
+function init(){if(!profile)document.getElementById('onboard').classList.remove('hidden');hydrate();renderFoodChips();renderFoods();updateMyProductsCount();renderRestChips();renderRestaurants();renderMeal();renderHistory();updateDashboard();setPreview(previewMode,document.querySelector(`#previewBtns button[data-v="${previewMode}"]`));if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});}
+function saveProfile(){profile={name:(patientName.value||'').trim(),age:+age.value,sex:sex.value,weight:+weight.value,height:+height.value,a1c:+a1c.value||null,a1cDate:a1cDate.value,basal:+basal.value||null,basalTime:basalTime.value,activity:+activity.value};if(!profile.name||!profile.age||!profile.sex||!profile.weight||!profile.height||!profile.activity){alert('أكمل الاسم والعمر والجنس والوزن والطول والنشاط.');return}localStorage.setItem('cd_profile_v3',JSON.stringify(profile));document.getElementById('onboard').classList.add('hidden');hydrate();updateDashboard();}
+function hydrate(){if(!profile)return;const map={sName:profile.name||'',sAge:profile.age,sSex:profile.sex,sWeight:profile.weight,sHeight:profile.height,sA1c:profile.a1c||'',sA1cDate:profile.a1cDate||'',sBasal:profile.basal||'',sBasalTime:profile.basalTime||'',sActivity:String(profile.activity)};Object.entries(map).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v});const wn=document.getElementById('welcomeName');if(wn)wn.textContent=profile.name?'مرحبًا، '+profile.name:'مرحبًا بك';renderProfile();}
+function saveSettings(){profile.name=(sName.value||'').trim();profile.age=+sAge.value;profile.sex=sSex.value;profile.weight=+sWeight.value;profile.height=+sHeight.value;profile.a1c=+sA1c.value||null;profile.a1cDate=sA1cDate.value;profile.basal=+sBasal.value||null;profile.basalTime=sBasalTime.value;profile.activity=+sActivity.value;localStorage.setItem('cd_profile_v3',JSON.stringify(profile));hydrate();updateDashboard();alert('تم حفظ البيانات');}
+function mifflinCalories(){if(!profile)return null;const bmr=10*profile.weight+6.25*profile.height-5*profile.age+(profile.sex==='male'?5:-161);return Math.round(bmr*profile.activity);}
+function carbShare(){if(!profile||!profile.a1c)return .525; if(profile.a1c<=7) return .55; if(profile.a1c<=8.5) return .525; return .50;}
+function dailyCarbs(){const kcal=mifflinCalories();return kcal?Math.round((kcal*carbShare())/4):null;}
+function todayCarbs(){const d=new Date().toISOString().slice(0,10);return history.filter(x=>(x.iso||'').slice(0,10)===d).reduce((s,x)=>s+x.carbs,0);}
+function getCorrection(bg){for(const r of CORRECTION){if(bg<=r.max)return r.u}return null;}
+function roundHalf(v){return Math.round(v*2)/2;}
+function updateDashboard(){const target=dailyCarbs(),logged=todayCarbs(),current=meal.reduce((s,x)=>s+x.carb*x.qty,0),projected=logged+current;topDaily.textContent=target?target+' غ':'—';topLogged.textContent=logged+' غ';topMeal.textContent=current+' غ';dailyTarget.textContent=target?target+' غ':'—';dailyLogged.textContent=logged+' غ';dailyRemain.textContent=target?Math.max(0,target-logged)+' غ':'—';dailyMessage.textContent=target?(projected>target?`تنبيه: مع الوجبة الحالية سيصبح مجموع اليوم ${projected} غ، أعلى من احتياجك التقديري ${target} غ.`:`مع الوجبة الحالية يصبح مجموع اليوم ${projected} غ من ${target} غ.`):'أكمل بيانات ملفك لاحتساب الكربوهيدرات اليومية.';updateSmartStatus();}
+function renderProfile(){if(!profile){profileGrid.innerHTML='';return}const bmi=(profile.weight/((profile.height/100)**2)).toFixed(1),target=dailyCarbs();const arr=[['الاسم',profile.name||'—'],['العمر',profile.age],['الجنس',profile.sex==='male'?'ذكر':'أنثى'],['الوزن',profile.weight+' كجم'],['الطول',profile.height+' سم'],['BMI',bmi],['HbA1c',profile.a1c?profile.a1c+' %':'—'],['الكربوهيدرات اليومية',target?target+' غ':'—'],['الطويل المفعول',profile.basal?profile.basal+' وحدة':'—'],['وقت الطويل',profile.basalTime||'—'],['النشاط',activityLabel(profile.activity)]];profileGrid.innerHTML=arr.map(([k,v])=>`<div class="pkpi"><span>${k}</span><b>${v}</b></div>`).join('');}
+function activityLabel(v){return v==1.2?'قليل جدًا':v==1.375?'خفيف':v==1.55?'متوسط':v==1.725?'مرتفع':'—'}
+function setMealType(t,btn){mealType=t;document.querySelectorAll('#mealTypeButtons button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');mealTypeBadge.textContent=MEAL_LABELS[t];generateSmartMeal(false);}
+function showTab(id,btn){document.querySelectorAll('.pane').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='history')renderHistory();if(id==='profile')renderProfile();}
+function setFoodMode(mode,btn){foodMode=mode;document.querySelectorAll('#foodModeChips .chip').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');foodSearch.value='';renderFoodChips();renderFoods();}
+function updateMyProductsCount(){const el=document.getElementById('myProductsCount');if(el)el.textContent=userProducts.length;}
+function renderFoodChips(){if(foodMode==='mine'){foodChips.innerHTML='';foodChips.classList.add('hidden');foodSearch.placeholder='ابحث في منتجات أضفتها...';return}foodChips.classList.remove('hidden');foodSearch.placeholder='ابحث عن صنف...';foodChips.innerHTML=Object.keys(FOOD_DB).map(c=>`<button class="chip ${c===foodCat?'active':''}" onclick="foodCat='${c}';renderFoodChips();renderFoods()">${c}</button>`).join('');}
+function renderFoods(){const q=(foodSearch.value||'').toLowerCase();if(foodMode==='mine'){const arr=userProducts.map((x,i)=>({...x,i})).filter(x=>!q||x.name.toLowerCase().includes(q)||(x.portion||'').toLowerCase().includes(q)||(x.brand||'').toLowerCase().includes(q)||(x.barcode||'').includes(q));foodList.innerHTML=arr.length?arr.map(x=>`<div class="food userProduct"><div style="display:flex;gap:10px;align-items:flex-start">${x.image?`<img class="productImage" src="${x.image}" onerror="this.style.display='none'">`:''}<div><h4>${x.name}</h4><small>${x.brand?'<b>'+x.brand+'</b> • ':''}${x.portion||'حصة محفوظة'} • ${x.carb} غ كربوهيدرات${x.barcode?'<br>باركود: '+x.barcode:''}</small><span class="addedNote">${x.origin==='manual'?'أضفته يدويًا':'تمت إضافته بالباركود'}${x.addedLabel?' • '+x.addedLabel:''}</span></div></div><div class="rightActions"><button class="btn ghost" style="padding:8px" onclick="deleteUserProduct(${x.i})">حذف</button><span class="badge green">${x.carb} غ</span><button class="plus" onclick="addUserProduct(${x.i})">＋</button></div></div>`).join(''):'<div class="empty">ما أضفت منتجات بعد. امسح باركود أي منتج وسيظهر هنا بعد حفظه.</div>';return}const arr=FOOD_DB[foodCat].map((x,i)=>({...x,i})).filter(x=>!q||x.name.toLowerCase().includes(q)||x.portion.toLowerCase().includes(q)||(x.brand||'').toLowerCase().includes(q)||(x.quality||'').toLowerCase().includes(q));foodList.innerHTML=arr.length?arr.map(x=>`<div class="food"><div><h4>${x.name}</h4><small>${x.brand?'<b>'+x.brand+'</b> • ':''}${x.portion} • ${x.carb} غ كربوهيدرات${x.highFat?' • دهون أعلى':''}${x.quality?'<br>'+x.quality:''}</small></div><div class="rightActions"><span class="badge ${x.highFat?'orange':'green'}">${x.carb} غ</span><button class="plus" onclick="addFood('${foodCat}',${x.i})">＋</button></div></div>`).join(''):'<div class="empty">لا توجد نتائج.</div>'; }
+function addUserProduct(i){const x=userProducts[i];if(!x)return;addMeal({name:x.name,portion:x.portion,carb:+x.carb,highFat:!!x.highFat,source:'user-product'});}
+function deleteUserProduct(i){if(!confirm('حذف هذا المنتج من منتجات أضفتها؟'))return;userProducts.splice(i,1);persistUserProducts();renderFoods();}
+function persistUserProducts(){localStorage.setItem('cd_user_products_v1',JSON.stringify(userProducts));updateMyProductsCount();}
+function saveUserProduct(p){const key=(p.barcode||'').trim();const idx=key?userProducts.findIndex(x=>x.barcode===key):-1;const obj={...p,carb:+p.carb,addedAt:new Date().toISOString(),addedLabel:new Date().toLocaleDateString('ar-SA')};if(idx>=0)userProducts[idx]={...userProducts[idx],...obj};else userProducts.unshift(obj);persistUserProducts();return obj;}
+function addFood(cat,i){const x=FOOD_DB[cat][i];addMeal({...x,source:'food'});}
+function addMeal(x){const e=meal.find(m=>m.name===x.name&&m.carb===x.carb);if(e)e.qty++;else meal.push({...x,qty:1});renderMeal();calculate();}
+function renderMeal(){if(!meal.length)mealList.innerHTML='<div class="empty">لم تضف أي صنف بعد.</div>';else mealList.innerHTML=meal.map((x,i)=>`<div class="mealitem"><div><b>${x.name}</b><div class="muted">${x.portion||''} • ${x.carb*x.qty} غ${x.highFat?' • دهون أعلى':''}</div></div><div class="qty"><button onclick="qty(${i},-1)">−</button><b>${x.qty}</b><button onclick="qty(${i},1)">＋</button></div></div>`).join('');const c=meal.reduce((s,x)=>s+x.carb*x.qty,0);mealCarbBadge.textContent=c+' غ';mealProgress.style.width=Math.min(100,c/120*100)+'%';updateDashboard();}
+function qty(i,d){meal[i].qty+=d;if(meal[i].qty<=0)meal.splice(i,1);renderMeal();calculate();}
+function resetMeal(){meal=[];renderMeal();calculate();}
+
+function normalizeBarcode(v){return String(v||'').replace(/\D/g,'').trim();}
+function openBarcodeManual(){openBarcodeScanner(false);setTimeout(()=>document.getElementById('barcodeInput')?.focus(),120);}
+function openBarcodeScanner(startCamera=true){barcodeModal.classList.remove('hidden');barcodeResult.innerHTML='';barcodeStatus.textContent=startCamera?'جاري تجهيز الكاميرا...':'أدخل رقم الباركود ثم اضغط بحث.';barcodeStatus.className='scannerStatus';barcodeInput.value='';scannedProduct=null;if(startCamera)startBarcodeCamera();else barcodeReader.innerHTML='<div class="empty">يمكنك إدخال الباركود يدويًا.</div>';}
+function startBarcodeCamera(){barcodeReader.innerHTML='';if(typeof Html5QrcodeScanner==='undefined'){barcodeStatus.textContent='تعذر تحميل ماسح الكاميرا. استخدم إدخال الباركود يدويًا.';barcodeStatus.className='scannerStatus bad';return}try{barcodeScanner=new Html5QrcodeScanner('barcodeReader',{fps:10,qrbox:{width:260,height:130},rememberLastUsedCamera:true,showTorchButtonIfSupported:true,formatsToSupport:[Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E,Html5QrcodeSupportedFormats.CODE_128]},false);barcodeScanner.render(onBarcodeScanned,()=>{});barcodeStatus.textContent='وجّه الكاميرا نحو الباركود. يمكنك أيضًا اختيار صورة من الجهاز.';}catch(e){barcodeStatus.textContent='تعذر تشغيل الكاميرا. استخدم إدخال الرقم يدويًا.';barcodeStatus.className='scannerStatus bad';}}
+async function onBarcodeScanned(text){if(barcodeBusy)return;barcodeBusy=true;const code=normalizeBarcode(text);try{if(barcodeScanner){await barcodeScanner.clear().catch(()=>{});barcodeScanner=null}await lookupBarcode(code);}finally{barcodeBusy=false;}}
+async function closeBarcodeScanner(){if(barcodeScanner){await barcodeScanner.clear().catch(()=>{});barcodeScanner=null}barcodeModal.classList.add('hidden');barcodeReader.innerHTML='';barcodeResult.innerHTML='';barcodeStatus.textContent='';barcodeBusy=false;}
+async function lookupBarcode(raw){const code=normalizeBarcode(raw);if(code.length<8){barcodeStatus.textContent='أدخل باركود صحيحًا من 8 أرقام أو أكثر.';barcodeStatus.className='scannerStatus bad';return}barcodeInput.value=code;const mine=userProducts.find(x=>x.barcode===code);if(mine){scannedProduct={...mine,existing:true};barcodeStatus.textContent='هذا المنتج محفوظ عندك مسبقًا.';barcodeStatus.className='scannerStatus ok';renderScannedProduct(scannedProduct);return}barcodeStatus.textContent='جاري البحث في قاعدة المنتجات العالمية...';barcodeStatus.className='scannerStatus';barcodeResult.innerHTML='';try{const fields='code,product_name,product_name_ar,brands,quantity,serving_size,serving_quantity,nutriments,image_front_small_url,image_front_url';const res=await fetch(`https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(code)}.json?fields=${fields}`);if(!res.ok)throw new Error('network');const data=await res.json();if(data.status===1&&data.product){const p=data.product,n=p.nutriments||{};let carb=Number(n.carbohydrates_serving);let portion=p.serving_size||'';if(!Number.isFinite(carb)){carb=Number(n.carbohydrates_100g);portion=portion||'100 غ/مل حسب بيانات المنتج';}if(!Number.isFinite(carb))carb='';scannedProduct={barcode:code,name:p.product_name_ar||p.product_name||'منتج بدون اسم',brand:p.brands||'',portion:portion||p.quantity||'حصة المنتج',carb,highFat:false,image:p.image_front_small_url||p.image_front_url||'',origin:'openfoodfacts',externalSource:'Open Food Facts'};barcodeStatus.textContent='تم العثور على المنتج. راجع الحصة والكربوهيدرات قبل الحفظ.';barcodeStatus.className='scannerStatus ok';renderScannedProduct(scannedProduct);}else{barcodeStatus.textContent='الباركود غير موجود في القاعدة الخارجية. أضف بياناته من الملصق الغذائي وسيُحفظ عندك.';barcodeStatus.className='scannerStatus bad';scannedProduct={barcode:code,name:'',brand:'',portion:'',carb:'',highFat:false,image:'',origin:'manual',externalSource:'إدخال يدوي'};renderScannedProduct(scannedProduct,true);}}catch(e){barcodeStatus.textContent='تعذر الوصول لقاعدة المنتجات الآن. يمكنك إدخال بيانات المنتج يدويًا وحفظه.';barcodeStatus.className='scannerStatus bad';scannedProduct={barcode:code,name:'',brand:'',portion:'',carb:'',highFat:false,image:'',origin:'manual',externalSource:'إدخال يدوي'};renderScannedProduct(scannedProduct,true);}}
+function renderScannedProduct(p,manual=false){const img=p.image?`<img src="${p.image}" onerror="this.style.display='none'">`:'<div class="restinitial">▥</div>';barcodeResult.innerHTML=`<div class="scanResult"><div class="scanProductHead">${img}<div><b>${manual?'أضف المنتج':'المنتج الموجود'}</b><div class="muted">${p.externalSource||'محفوظ في منتجاتك'}${p.barcode?' • '+p.barcode:''}</div></div></div><div class="divider"></div><div class="field"><label>اسم المنتج</label><input id="scanName" value="${escapeAttr(p.name||'')}" placeholder="مثال: عصير تفاح"></div><div class="field"><label>الشركة / البراند</label><input id="scanBrand" value="${escapeAttr(p.brand||'')}" placeholder="مثال: المراعي"></div><div class="grid"><div class="field"><label>الحصة المستخدمة</label><input id="scanPortion" value="${escapeAttr(p.portion||'')}" placeholder="مثال: 200 مل"></div><div class="field"><label>الكربوهيدرات في الحصة (غ)</label><input id="scanCarb" type="number" min="0" step="0.1" value="${p.carb!==''&&p.carb!=null?escapeAttr(String(p.carb)):''}" placeholder="مثال: 22"></div></div><div class="notice info">راجع الرقم مع الملصق الغذائي، خصوصًا إذا اختلف حجم العبوة أو النكهة. قاعدة المنتجات الخارجية مفتوحة وقد تحتوي بيانات ناقصة أو قديمة.</div><div class="actions"><button class="btn primary" onclick="saveScannedAndAdd()">حفظ + إضافة للوجبة</button><button class="btn soft" onclick="saveScannedOnly()">حفظ في منتجاتي</button></div></div>`;}
+function escapeAttr(v){return String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function collectScannedForm(){if(!scannedProduct)return null;const name=(scanName.value||'').trim(),brand=(scanBrand.value||'').trim(),portion=(scanPortion.value||'').trim(),carb=Number(scanCarb.value);if(!name){alert('اكتب اسم المنتج.');return null}if(!portion){alert('اكتب حجم الحصة.');return null}if(!Number.isFinite(carb)||carb<0){alert('أدخل الكربوهيدرات في الحصة.');return null}return{...scannedProduct,name,brand,portion,carb,origin:scannedProduct.origin==='manual'?'manual':'barcode'};}
+function saveScannedOnly(){const p=collectScannedForm();if(!p)return;saveUserProduct(p);barcodeStatus.textContent='تمت إضافة المنتج إلى «منتجات أضفتها».';barcodeStatus.className='scannerStatus ok';foodMode='mine';document.querySelectorAll('#foodModeChips .chip').forEach(x=>x.classList.toggle('active',x.dataset.mode==='mine'));renderFoodChips();renderFoods();setTimeout(()=>closeBarcodeScanner(),350);}
+function saveScannedAndAdd(){const p=collectScannedForm();if(!p)return;const saved=saveUserProduct(p);addMeal({name:saved.name,portion:saved.portion,carb:+saved.carb,highFat:!!saved.highFat,source:'barcode'});barcodeStatus.textContent='تمت إضافته إلى الوجبة وإلى «منتجات أضفتها».';barcodeStatus.className='scannerStatus ok';foodMode='mine';document.querySelectorAll('#foodModeChips .chip').forEach(x=>x.classList.toggle('active',x.dataset.mode==='mine'));renderFoodChips();renderFoods();setTimeout(()=>closeBarcodeScanner(),350);}
+function renderRestChips(){restChips.innerHTML=['الكل','عالمية','عربية'].map(t=>`<button class="chip ${t===restType?'active':''}" onclick="restType='${t}';renderRestChips();renderRestaurants()">${t}</button>`).join('');}
+function logoUrl(domain){return `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;}
+function renderRestaurants(){const q=(restSearch.value||'').toLowerCase();const rs=RESTAURANTS.map((r,ri)=>({...r,ri})).filter(r=>(restType==='الكل'||r.type===restType)&&(!q||r.name.toLowerCase().includes(q)||r.meals.some(m=>m.name.toLowerCase().includes(q))));restList.innerHTML=rs.length?rs.map(r=>{const ms=r.meals.map((m,mi)=>({...m,mi})).filter(m=>!q||r.name.toLowerCase().includes(q)||m.name.toLowerCase().includes(q)).map(m=>`<div class="restmeal"><div><h4>${m.name}</h4><div class="muted">${m.carb} غ كربوهيدرات ${m.highFat?'• دهون أعلى':''}</div><span class="source ${m.quality.includes('تقديري')?'est':''}">${m.quality}</span></div><div class="rightActions"><button class="customBtn" onclick="openCustomize(${r.ri},${m.mi})">تخصيص +</button></div></div>`).join('');return `<div class="restaurant"><div class="resthead"><div class="restname"><img class="restlogo" src="${logoUrl(r.domain)}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="restinitial" style="display:none">${r.name.slice(0,2)}</div><div><b>${r.name}</b><div class="muted">${r.type}</div></div></div><span class="badge blue">${r.meals.length} صنف</span></div>${ms}</div>`}).join(''):'<div class="empty">لا توجد نتائج.</div>';}
+function openCustomize(ri,mi){const r=RESTAURANTS[ri],m=r.meals[mi];customCtx={ri,mi,mods:(m.mods||[]).map(x=>({name:x[0],delta:x[1],on:false}))};modalTitle.textContent=r.name+' • '+m.name;modalSubtitle.textContent=`القيمة الأساسية ${m.carb} غ • ${m.quality}`;renderCustom();modal.classList.remove('hidden');}
+function renderCustom(){const r=RESTAURANTS[customCtx.ri],m=r.meals[customCtx.mi];let total=m.carb+customCtx.mods.filter(x=>x.on).reduce((s,x)=>s+x.delta,0);total=Math.max(0,total);modalBody.innerHTML=`<div class="miniGrid"><div class="miniCard"><small>الكربوهيدرات بعد التعديل</small><b>${total} غ</b></div><div class="miniCard"><small>جرعة تغطية الكارب</small><b>${roundHalf(total/ICR)} وحدة</b></div></div><div class="divider"></div>${customCtx.mods.length?customCtx.mods.map((x,i)=>`<div class="modrow"><div><b>${x.name}</b><div class="muted">${x.delta>0?'+':''}${x.delta} غ كربوهيدرات</div></div><button class="toggle ${x.on?'on':''}" onclick="toggleMod(${i})">${x.on?'مطبق ✓':'تطبيق'}</button></div>`).join(''):'<div class="empty">لا توجد تعديلات حسابية لهذا الصنف.</div>'}`;}
+function toggleMod(i){customCtx.mods[i].on=!customCtx.mods[i].on;renderCustom();}
+function confirmCustomMeal(){const r=RESTAURANTS[customCtx.ri],m=r.meals[customCtx.mi];let total=m.carb+customCtx.mods.filter(x=>x.on).reduce((s,x)=>s+x.delta,0);total=Math.max(0,total);const mods=customCtx.mods.filter(x=>x.on).map(x=>x.name).join('، ');addMeal({name:r.name+' - '+m.name+(mods?' ('+mods+')':''),portion:'وجبة مطعم',carb:total,highFat:!!m.highFat,source:'restaurant'});closeModal();}
+function closeModal(){modal.classList.add('hidden');customCtx=null;}
+function calculate(){const carbs=meal.reduce((s,x)=>s+x.carb*x.qty,0);carbTotal.textContent=carbs+' غ';const mealU=roundHalf(carbs/ICR);mealDose.textContent=mealU+' وحدة';const highFat=meal.some(x=>x.highFat);fatAdvice.innerHTML=highFat?'<div class="notice warn"><b>🍟 وجبة أعلى دهونًا</b><br>الدهون قد تؤخر ارتفاع السكر بعد الوجبة. لا يضيف التطبيق وحدات تلقائيًا بسبب الدهون؛ راقب السكر واتبع خطة الفريق المعالج إذا كانت لديك تعليمات لتقسيم الجرعة.</div>':'';const g=+bg.value;safety.innerHTML='';if(!g){corrDose.textContent='—';totalDose.textContent='—';equation.textContent='أدخل السكر وأضف أصناف الوجبة ليظهر الإجمالي.';updateDashboard();return}if(g<54){safety.innerHTML='<div class="notice danger"><b>انخفاض شديد</b><br>عالج الانخفاض فورًا بكربوهيدرات سريعة، وأعد القياس بعد 15 دقيقة. إذا كان الشخص غير واعٍ أو غير قادر على البلع استخدم الغلوكاغون إن توفر واطلب الطوارئ.</div>';corrDose.textContent='—';totalDose.textContent='لا تُحسب';equation.textContent='عالج الانخفاض أولاً.';return}if(g<70){safety.innerHTML='<div class="notice danger"><b>انخفاض سكر الدم</b><br>استخدم قاعدة 15-15: 15 غ كربوهيدرات سريعة ثم إعادة القياس بعد 15 دقيقة.</div>';corrDose.textContent='—';totalDose.textContent='لا تُحسب';equation.textContent='عالج الانخفاض أولاً.';return}const c=getCorrection(g);if(c===null){safety.innerHTML='<div class="notice warn"><b>أعلى من نطاق جدول التصحيح</b><br>لا يمدد التطبيق جدول التصحيح فوق 400. أعد القياس واتبع خطة الفريق المعالج وافحص الكيتونات عند الحاجة.</div>';corrDose.textContent='—';totalDose.textContent='راجع خطتك';equation.textContent='لا توجد جرعة تلقائية فوق 400.';return}corrDose.textContent=c+' وحدة';const total=roundHalf(mealU+c);totalDose.textContent=total+' وحدة';equation.innerHTML=`${mealU} وحدة لتغطية الوجبة + ${c} وحدة تصحيح = <b>${total} وحدة</b>`;updateDashboard();}
+function saveMeal(){const g=+bg.value;if(!mealType){alert('حدد نوع الوجبة أولاً.');return}if(!meal.length){alert('أضف أصنافًا للوجبة.');return}if(!g){alert('أدخل سكر ما قبل الوجبة.');return}if(g<70||g>400){alert('لا يمكن حفظ جرعة نهائية خارج نطاق الأمان.');return}const carbs=meal.reduce((s,x)=>s+x.carb*x.qty,0),mu=roundHalf(carbs/ICR),corr=getCorrection(g),total=roundHalf(mu+corr);history.unshift({id:Date.now(),iso:new Date().toISOString(),date:new Date().toLocaleString('ar-SA'),mealType,bg:g,carbs,mealU:mu,corr,total,items:meal.map(x=>({name:x.name,portion:x.portion||'',carb:x.carb,qty:x.qty,highFat:!!x.highFat,source:x.source||'food'}))});localStorage.setItem('cd_history_v3',JSON.stringify(history));renderHistory();updateDashboard();updateSmartStatus();alert('تم حفظ الوجبة');}
+function renderHistory(){historyList.innerHTML=history.length?history.map(h=>`<div class="history"><div class="hrow"><div><b>${MEAL_LABELS[h.mealType]||'وجبة'} • ${h.total} وحدة</b><div class="muted">سكر ${h.bg} • ${h.carbs} غ كربوهيدرات • ${h.date}</div></div><span class="badge green">${h.total} وحدة</span></div><div class="muted" style="margin-top:6px">${h.items.map(x=>x.name+' ×'+x.qty).join('، ')}</div></div>`).join(''):'<div class="empty">لا يوجد سجل بعد.</div>';}
+function learnedDays(){return new Set(history.map(h=>(h.iso||'').slice(0,10)).filter(Boolean)).size;}
+function updateSmartStatus(){const d=learnedDays();smartStatus.textContent=d>=7?'متعلّم من سجلك':`تجريبي • ${d}/7 أيام`;}
+function smartBudget(){const t=dailyCarbs()||200;return Math.round(t*(MEAL_SHARE[mealType]||.25));}
+function generateSmartMeal(show=true){if(!mealType){if(show)alert('حدد نوع الوجبة أولاً.');return}const budget=smartBudget();const same=history.filter(h=>h.mealType===mealType);const freq={};same.forEach(h=>h.items.forEach(i=>{const k=i.name+'|'+i.carb+'|'+(i.highFat?1:0);freq[k]=(freq[k]||0)+i.qty}));const fav=Object.entries(freq).sort((a,b)=>b[1]-a[1]).map(([k])=>{const [name,carb,hf]=k.split('|');return{name,carb:+carb,highFat:hf==='1',portion:'من تفضيلاتك'}});const fallback={breakfast:[{name:'توست أسمر',portion:'شريحتان',carb:30},{name:'بيض',portion:'2 بيضة',carb:2},{name:'خيار وطماطم',portion:'1 كوب',carb:5},{name:'حليب',portion:'1 كوب',carb:12}],lunch:[{name:'رز مطبوخ',portion:'12 ملعقة',carb:30},{name:'صدر دجاج مشوي',portion:'120 غ',carb:0},{name:'سلطة خضراء',portion:'2 كوب',carb:5},{name:'زبادي',portion:'1 علبة',carb:12},{name:'تفاح',portion:'1 حبة',carb:15}],dinner:[{name:'خبز عربي',portion:'½ رغيف',carb:30},{name:'تونة بالماء',portion:'½ علبة',carb:0},{name:'سلطة خضراء',portion:'2 كوب',carb:5},{name:'زبادي',portion:'1 علبة',carb:12}],snack:[{name:'تفاح',portion:'1 حبة',carb:15},{name:'لوز',portion:'10 حبات',carb:3,highFat:true}]}[mealType];const pool=[...fav,...fallback];smartDraft=[];let total=0;const seen=new Set();for(const x of pool){if(seen.has(x.name))continue;if(total+x.carb>budget*1.15&&total>0)continue;smartDraft.push({...x,qty:1});seen.add(x.name);total+=x.carb;if(smartDraft.length>=5||total>=budget*.82)break}smartBox.innerHTML=`<b>${MEAL_LABELS[mealType]} مقترح • ${total} غ من نحو ${budget} غ للوجبة</b>${smartDraft.map(x=>`<div class="smartrow">${x.name}<span class="muted"> • ${x.portion} • ${x.carb} غ</span></div>`).join('')}<div class="muted" style="margin-top:7px">كلما زاد سجل وجباتك، تُعطى الأولوية للأصناف التي تختارها أكثر.</div>`;}
+function applySmartMeal(){if(!smartDraft.length){generateSmartMeal();return}smartDraft.forEach(x=>addMeal({...x,source:'smart'}));showTab('home',document.querySelector('.nav[data-tab="home"]'));}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e});
+function installApp(){if(deferredInstallPrompt){deferredInstallPrompt.prompt();deferredInstallPrompt.userChoice.finally(()=>deferredInstallPrompt=null);return}showInstallHelp();}
+function showInstallHelp(){const isiOS=/iPhone|iPad|iPod/.test(navigator.userAgent);alert(isiOS?'على iPhone: افتح الرابط في Safari، اضغط زر المشاركة، ثم اختر “إضافة إلى الشاشة الرئيسية”.':'افتح قائمة المتصفح واختر “Install app” أو “Add to Home screen”.');}
+function setPreview(mode,btn){previewMode=mode;localStorage.setItem('cd_preview',mode);app.classList.remove('preview-phone','preview-tablet','preview-desktop');if(mode!=='auto')app.classList.add('preview-'+mode);document.querySelectorAll('#previewBtns button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');}
+init();
+</script>
+</body></html>
